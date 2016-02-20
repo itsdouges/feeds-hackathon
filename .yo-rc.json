@@ -1,0 +1,7 @@
+{
+  "generator-react-webpack": {
+    "appName": "feedsHackathon",
+    "style": "less",
+    "postcss": false
+  }
+}
