@@ -5,10 +5,43 @@ import React from 'react';
 require('styles/views/CreatePageOne.less');
 
 class CreatePageOneComponent extends React.Component {
+	done (e) {
+		e.preventDefault();
+
+		const value = this.refs.name.value;
+	    if (value) {
+	      this.props.save({
+	      	name: this.refs.name.value,
+	      });
+	    }
+	}
+
+	onChange () {
+
+		const value = this.refs.name.value;
+
+		if (value) {
+			this.props.setValid(true);
+			return;
+		}
+
+		this.props.setValid(false);
+	}
+
   render() {
+  	console.log(this.props);
+
     return (
       <div className="page">
-        Please edit src/components/views//CreatePageOneComponent.js to update this component!
+        <form>
+          <input defaultValue={this.props.data.name} onChange={this.onChange.bind(this)} type="text" ref="name" />
+
+          <button
+          	style={{opacity:0,height: '0px'}}
+              type="submit"
+              onClick={this.done.bind(this)}
+              className="btn btn-block btn-default">Hide Me</button>
+        </form>
       </div>
     );
   }

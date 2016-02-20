@@ -16,12 +16,15 @@ class CreateComponent extends React.Component {
             current: 1,
             1: {
                 valid: false,
+                data: {},
             },
             2: {
                 valid: false,
+                data: {},
             },
             3: {
                 valid: false,
+                data: {},
             },
         };
     }
@@ -33,50 +36,83 @@ class CreateComponent extends React.Component {
         });
     }
 
+    canGoBack () {
+        return this.state.current > 1;
+    }
+
+    canGoForward () {
+        return this.state.current < 3 && this.state[this.state.current].valid;
+    }
+
     next () {
         // if current page valid, allow movement
         
-        if (this.state.current < 3) {
-            const state = this.state;
+        const state = this.state;
 
-            this.setState({
-                ...state,
-                current: ++state.current,
-            });
-        }
+        this.setState({
+            ...state,
+            current: ++state.current,
+        });
     }
 
     back () {
         // if current page valid, allow movement
 
-        if (this.state.current > 1) {
-            const state = this.state;
+        const state = this.state;
 
-            this.setState({
-                ...state,
-                current: --state.current,
-            });
-        }
+        this.setState({
+            ...state,
+            current: --state.current,
+        });
     }
 
-    setValid () {
+    savePage (data) {
+        console.log(data);
 
+        const state = {
+            ...this.state,
+            
+        };
+
+        state[state.current].data = data;
+
+        this.setState(state);
+
+        if (this.canGoForward()) {
+            this.next();
+        }
+
+        
+    }
+
+    setValid (valid) {
+        const state = {
+            ...this.state,
+            
+        };
+
+        state[state.current].valid = valid;
+
+        this.setState(state); 
     }
 
   render() {
+    const back = this.canGoBack() && <a className="page-move left" onClick={this.back.bind(this)}>&lt;-</a>;
+    const forward = this.canGoForward() && <a className="page-move right" onClick={this.next.bind(this)}>-&gt;</a>;
+
     let page;
 
     switch (this.state.current) {
         case 2:
-            page = <PageTwo key={2} setValid={this.setValid.bind(this)} />;
+            page = <PageTwo data={this.state[2].data} key={2} setValid={this.setValid.bind(this)} save={this.savePage.bind(this)} />;
             break;
 
         case 3:
-            page = <PageThree key={3} setValid={this.setValid.bind(this)} />;
+            page = <PageThree data={this.state[3].data} key={3} setValid={this.setValid.bind(this)} save={this.savePage.bind(this)} />;
             break;
 
         default:
-            page = <PageOne key={1} setValid={this.setValid.bind(this)} />;
+            page = <PageOne data={this.state[1].data} key={1} setValid={this.setValid.bind(this)} save={this.savePage.bind(this)} />;
             break;
     }
 
@@ -92,8 +128,8 @@ class CreateComponent extends React.Component {
         </div>
 
         <div className="page-actions">
-            <a className="page-move left" onClick={this.back.bind(this)}>&lt;-</a>
-            <a className="page-move right" onClick={this.next.bind(this)}>-&gt;</a>
+            {back}
+            {forward}
         </div>
       </div>
     );
