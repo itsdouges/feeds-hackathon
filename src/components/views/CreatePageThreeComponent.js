@@ -2,22 +2,54 @@
 
 import React from 'react';
 
-require('styles/views/CreatePageThree.less');
+class PageThree extends React.Component {
+	done (e) {
+		e.preventDefault();
 
-class CreatePageThreeComponent extends React.Component {
+		const value = this.refs.name.value;
+	    if (value) {
+	      this.props.save({
+	      	name: this.refs.name.value,
+	      });
+	    }
+	}
+
+	onChange () {
+
+		const value = this.refs.name.value;
+
+		if (value) {
+			this.props.setValid(true);
+			return;
+		}
+
+		this.props.setValid(false);
+	}
+
   render() {
+  	console.log(this.props);
+
     return (
       <div className="page">
-        Please edit src/components/views//CreatePageThreeComponent.js to update this component!
+      Steps
+        <form>
+          <input defaultValue={this.props.data.name} onChange={this.onChange.bind(this)} type="text" ref="name" />
+
+          <button
+          	style={{opacity:0,height: '0px'}}
+              type="submit"
+              onClick={this.done.bind(this)}
+              className="btn btn-block btn-default">Hide Me</button>
+        </form>
       </div>
     );
   }
 }
 
-CreatePageThreeComponent.displayName = 'ViewsCreatePageThreeComponent';
+PageThree.displayName = 'ViewsCreatePageOneComponent';
 
 // Uncomment properties you need
-// CreatePageThreeComponent.propTypes = {};
-// CreatePageThreeComponent.defaultProps = {};
+// CreatePageOneComponent.propTypes = {};
+// CreatePageOneComponent.defaultProps = {};
 
-export default CreatePageThreeComponent;
+export default PageThree;
