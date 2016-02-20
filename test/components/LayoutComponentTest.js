@@ -4,20 +4,19 @@
 'use strict';
 
 // Uncomment the following lines to use the react test utilities
-// import React from 'react/addons';
-// const TestUtils = React.addons.TestUtils;
+// import TestUtils from 'react-addons-test-utils';
 import createComponent from 'helpers/shallowRenderHelper';
 
-import Main from 'components/Main';
+import LayoutComponent from 'components//LayoutComponent.js';
 
-describe('MainComponent', () => {
-  let MainComponent;
+describe('LayoutComponent', () => {
+  let component;
 
   beforeEach(() => {
-    MainComponent = createComponent(Main);
+    component = createComponent(LayoutComponent);
   });
 
   it('should have its component name as default className', () => {
-    expect(MainComponent.props.className).to.equal('index');
+    expect(component.props.className).to.equal('layout-component');
   });
 });
