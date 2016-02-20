@@ -11,7 +11,7 @@ class HomeComponent extends React.Component {
         <h1 className="title-hero">feed</h1>
 
         <ul className="home-actions">
-        	<li><a href="/find">Find</a></li>
+        	<li><a href="/recipe/find">Find</a></li>
         	<li><a href="/create">Create</a></li>
         	<li><a href="/saved">Saved</a></li>
         </ul>

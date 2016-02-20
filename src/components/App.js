@@ -1,7 +1,7 @@
 import React from 'react';
 import { Router, Route, browserHistory, IndexRoute } from 'react-router';
 import { createStore, applyMiddleware, combineReducers } from 'redux';
-import { Provider, connect } from 'react-redux';
+import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
 
 import * as reducers from '../reducers';
@@ -11,6 +11,7 @@ import Home from './HomeComponent';
 import Error from './ErrorComponent';
 import CreateView from './views/CreateComponent';
 import FindRecipe from './FindRecipeComponent';
+import ViewRecipe from './ViewRecipeComponent';
 
 const createStoreWithMiddleware = applyMiddleware(thunk)(createStore);
 const reducer = combineReducers(reducers);
@@ -23,10 +24,11 @@ class AppComponent extends React.Component {
       <Provider store={store}>
         <Router history={browserHistory}>
           <Route path='/' component={Layout}>
-            <Route path='/find' component={FindRecipe} />
+            <Route path='/recipe/find' component={FindRecipe} />
+            <Route path='/create' component={CreateView} />
+            <Route path='/recipe/view/:recipeId' component={ViewRecipe} />
 
             <IndexRoute component={Home} />
-            <Route path='create' component={CreateView} />
             <Route path='*' component={Error} />
           </Route>
         </Router>

@@ -6,9 +6,9 @@ import { connect } from 'react-redux';
 import structs from '../constants/structs';
 import t from 'tcomb-form';
 
-import '../styles/FindRecipe.less';
+import RecipeCard from './RecipeCardComponent';
 
-const IMAGE_URI = 'https://spoonacular.com/recipeImages/';
+import '../styles/FindRecipe.less';
 
 const Form = t.form.Form;
 const FormSchema = t.struct({
@@ -71,8 +71,8 @@ class FindRecipeComponent extends React.Component {
         {
           model.results.map((recipe, i) => {
             return (
-              <li key={i} className="recipe">
-                <img className="img-responsive" src={IMAGE_URI + recipe.image} />
+              <li key={i}>
+                <RecipeCard recipe={recipe} />
               </li>
             )
           })

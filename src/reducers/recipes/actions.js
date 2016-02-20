@@ -4,7 +4,7 @@ import * as types from './types';
 
 const API_KEY = 'oI8K3gw76zmshqdp5Ns7rPJDW2kHp19pwDljsnid6PkJte1yuo';
 
-export function startLoading() {
+function startLoading() {
     return {
         type: types.LOADING
     };
@@ -27,17 +27,43 @@ export function findRecipe(state) {
         }).then((response) => {
             return response.json();
         }).then((json) => {
-            dispatch(findRecipeComplete(json.results, null));
+            dispatch(findRecipeComplete(null, json.results));
         }).catch((err) => {
-            dispatch(findRecipeComplete([], err));
+            dispatch(findRecipeComplete(err, []));
         });
     }
 }
 
-function findRecipeComplete(results, error) {
+function findRecipeComplete(error, results) {
     return {
         type: types.FINDRECIPES,
         results: results,
+        error: error
+    };
+}
+
+export function viewRecipe(id) {
+    return dispatch => {
+        dispatch(startLoading());
+
+        fetch('https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/' + id + '/information', {
+            headers: {
+                'X-Mashape-Key': API_KEY
+            }
+        }).then((response) => {
+            return response.json();
+        }).then((json) => {
+            dispatch(viewRecipeComplete(null, json));
+        }).catch((err) => {
+            dispatch(viewRecipeComplete(err, null));
+        });
+    }
+}
+
+function viewRecipeComplete(error, recipe) {
+    return {
+        type: types.VIEWRECIPE,
+        recipe: recipe,
         error: error
     };
 }
