@@ -11,7 +11,7 @@ import '../styles/Layout.less';
 class LayoutComponent extends React.Component {
   render() {
     return (
-      <div className="layout-component">
+      <div className="layout-component container">
       	<ContextStrip />
       	
         { this.props.children }

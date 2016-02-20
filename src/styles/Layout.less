@@ -1,13 +1,14 @@
+@import 'Colors.less';
+
 html,
-#app,
 .layout-component {
-  height: 100%;
-  max-width: 800px;
-  margin: 0 auto;
+  min-height: 100%;
+  border: 1px solid @brandSecondary;
+  padding: 2em;
 }
 
 body {
-  background: #66BB6A;
+  background: @brandPrimary;
   height: 100%;
 }
 
@@ -25,4 +26,13 @@ li {
   display: inline-block;
   margin: 0;
   padding: 0;
+}
+
+.loading {
+  font-size: 4em;
+  color: @fontSecondary;
+}
+
+.fieldset {
+  border: none;
 }

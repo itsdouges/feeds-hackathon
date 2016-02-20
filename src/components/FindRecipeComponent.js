@@ -12,11 +12,33 @@ const IMAGE_URI = 'https://spoonacular.com/recipeImages/';
 
 const Form = t.form.Form;
 const FormSchema = t.struct({
+  query: t.maybe(t.String),
   cuisine: t.maybe(t.enums(structs.cuisines)),
   diet: t.maybe(t.enums(structs.diets)),
-  query: t.maybe(t.String),
   type: t.maybe(t.enums(structs.types))
 });
+const FormOptions = {
+  fields: {
+    query: {
+      label: 'Search',
+      attrs: {
+        placeholder: 'Enter search criteria'
+      }
+    },
+    cuisine: {
+      nullOption: { value: '', text: 'Choose a cuisine' },
+      label: 'Cuisine'
+    },
+      diet: {
+      nullOption: { value: '', text: 'Choose a diet' },
+      label: 'Diet'
+    },
+    type: {
+      nullOption: { value: '', text: 'Choose a type' },
+      label: 'Type'
+    }
+  }
+};
 
 class FindRecipeComponent extends React.Component {
   constructor(props) {
@@ -50,7 +72,7 @@ class FindRecipeComponent extends React.Component {
           model.results.map((recipe, i) => {
             return (
               <li key={i} className="recipe">
-                <img src={IMAGE_URI + recipe.image} />
+                <img className="img-responsive" src={IMAGE_URI + recipe.image} />
               </li>
             )
           })
@@ -64,14 +86,21 @@ class FindRecipeComponent extends React.Component {
   }
 
   render() {
+    const { state } = this.props;
+
     return (
       <div className="findrecipe-component">
+        <div className="hero-icon">
+          <i className="fa fa-search" />
+        </div>
+
         <form>
           <Form
               type={FormSchema}
               value={this.state.form}
               onChange={this.onChange.bind(this)}
-              />
+              options={FormOptions} />
+
           <button
               type="submit"
               onClick={this.search.bind(this)}
@@ -79,7 +108,7 @@ class FindRecipeComponent extends React.Component {
         </form>
 
         <div className="results">
-          { this.resultsView() }
+          { state.recipe.loading ? <i className="fa fa-refresh fa-spin loading" /> : this.resultsView() }
         </div>
       </div>
     );

@@ -1,8 +1,29 @@
 .findrecipe-component {
+  .hero-icon {
+    margin: 0 auto;
+  }
 
   .results {
-    img {
-      height: 8em;
+    padding: 2em;
+    display: flex;
+    ul {
+      display: flex;
+      flex-flow: row wrap;
+      justify-content: space-around;
+      list-style: none;
+      padding: 0;
+      margin: 0;
+
+      li {
+        margin: 2em;
+        img {
+          height: 20em;
+        }
+      }
+    }
+
+    .loading {
+      margin: 0 auto;
     }
   }
 }
