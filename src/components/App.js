@@ -9,6 +9,7 @@ import * as reducers from '../reducers';
 import Layout from './LayoutComponent';
 import Home from './HomeComponent';
 import Error from './ErrorComponent';
+import CreateView from './views/CreateComponent';
 
 const createStoreWithMiddleware = applyMiddleware(thunk)(createStore);
 const reducer = combineReducers(reducers);
@@ -23,6 +24,7 @@ class AppComponent extends React.Component {
           <Route path='/' component={Layout}>
 
             <IndexRoute component={Home} />
+            <Route path='create' component={CreateView} />
             <Route path='*' component={Error} />
           </Route>
         </Router>
