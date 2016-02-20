@@ -3,6 +3,7 @@
 import React from 'react';
 import { mapStateToProps, mapDispatchToProps } from '../reducers/mapping';
 import { connect } from 'react-redux';
+import ContextStrip from './ContextStripComponent';
 
 import 'normalize.css';
 import '../styles/Layout.less';
@@ -11,6 +12,8 @@ class LayoutComponent extends React.Component {
   render() {
     return (
       <div className="layout-component">
+      	<ContextStrip />
+      	
         { this.props.children }
       </div>
     );

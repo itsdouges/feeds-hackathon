@@ -1,16 +1,20 @@
-'use strict';
-
 import React from 'react';
 import { mapStateToProps, mapDispatchToProps } from '../reducers/mapping';
 import { connect } from 'react-redux';
-
 import '../styles/Home.less';
 
 class HomeComponent extends React.Component {
   render() {
     return (
-      <div className="home-component">
-        Please edit src/components///HomeComponent.js to update this component!
+      <div className="home">
+      	<div className="hero-icon"></div>
+        <h1 className="title-hero">feed</h1>
+
+        <ul className="home-actions">
+        	<li><a href="/find">Find</a></li>
+        	<li><a href="/create">Create</a></li>
+        	<li><a href="/saved">Saved</a></li>
+        </ul>
       </div>
     );
   }
