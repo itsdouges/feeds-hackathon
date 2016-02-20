@@ -9,6 +9,7 @@ import * as reducers from '../reducers';
 import Layout from './LayoutComponent';
 import Home from './HomeComponent';
 import Error from './ErrorComponent';
+import FindRecipe from './FindRecipeComponent';
 
 const createStoreWithMiddleware = applyMiddleware(thunk)(createStore);
 const reducer = combineReducers(reducers);
@@ -21,6 +22,7 @@ class AppComponent extends React.Component {
       <Provider store={store}>
         <Router history={browserHistory}>
           <Route path='/' component={Layout}>
+            <Route path='/find' component={FindRecipe} />
 
             <IndexRoute component={Home} />
             <Route path='*' component={Error} />
