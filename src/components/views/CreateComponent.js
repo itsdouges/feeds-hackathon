@@ -84,6 +84,18 @@ class CreateComponent extends React.Component {
         console.log('PAGE STATE', this.state);
     }
 
+    canFinish () {
+        return this.state.current === 3 && this.state[3].valid;
+    }
+
+    finish () {
+        console.log({
+            ...this.state[1].data,
+            ...this.state[2].data,
+            ...this.state[3].data,
+        });
+    }
+
     setValid (valid) {
         const state = {
             ...this.state,
@@ -97,6 +109,7 @@ class CreateComponent extends React.Component {
   render() {
     const back = this.canGoBack() && <a className="page-move left" onClick={this.back.bind(this)}>&lt;-</a>;
     const forward = this.canGoForward() && <a className="page-move right" onClick={this.next.bind(this)}>-&gt;</a>;
+    const finish = this.canFinish() && <a className="page-move right finish" onClick={this.finish.bind(this)}>FINISH HIM</a>;
 
     let page;
 
@@ -128,6 +141,7 @@ class CreateComponent extends React.Component {
         <div className="page-actions">
             {back}
             {forward}
+            {finish}
         </div>
       </div>
     );

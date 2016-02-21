@@ -2,13 +2,17 @@
 
 import React from 'react';
 
-require('styles//Step.less');
-
 class StepComponent extends React.Component {
+	remove () {
+		this.props.onRemove(this.props.data);
+	}
+
   render() {
     return (
       <div className="step-component">
-        Please edit src/components///StepComponent.js to update this component!
+  		Step {this.props.number}: {this.props.data.text}
+
+  		<button onClick={this.remove.bind(this)}>REMOVE</button>
       </div>
     );
   }

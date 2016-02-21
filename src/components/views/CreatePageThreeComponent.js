@@ -1,8 +1,18 @@
 'use strict';
 
 import React from 'react';
+import StepList from '../StepListComponent';
 
 class PageThree extends React.Component {
+	constructor (props) {
+		super(props);
+
+		this.state = {
+			errors: {},
+			steps: props.data.steps || [],
+		};
+	}
+
 	done (e) {
 		e.preventDefault();
 
@@ -14,16 +24,17 @@ class PageThree extends React.Component {
 	    }
 	}
 
-	onChange () {
+	onChange (steps) {
+		this.setState({
+			...this.state,
+			steps,
+		});
 
-		const value = this.refs.name.value;
+		this.props.setValid(!!steps.length);
 
-		if (value) {
-			this.props.setValid(true);
-			return;
-		}
-
-		this.props.setValid(false);
+      this.props.save({
+      	steps
+      });
 	}
 
 	save () {
@@ -35,16 +46,7 @@ class PageThree extends React.Component {
 
     return (
       <div className="page">
-      Steps
-        <form>
-          <input defaultValue={this.props.data.name} onChange={this.onChange.bind(this)} type="text" ref="name" />
-
-          <button
-          	style={{opacity:0,height: '0px'}}
-              type="submit"
-              onClick={this.done.bind(this)}
-              className="btn btn-block btn-default">Hide Me</button>
-        </form>
+    	<StepList onChange={this.onChange.bind(this)} defaultValue={this.state.steps} />
       </div>
     );
   }
