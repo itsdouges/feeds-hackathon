@@ -3,6 +3,7 @@
 import React from 'react';
 import { mapStateToProps, mapDispatchToProps } from '../reducers/mapping';
 import { connect } from 'react-redux';
+import { Link } from 'react-router';
 
 import '../styles/ContextStrip.less';
 
@@ -39,7 +40,9 @@ class ContextStripComponent extends React.Component {
 
     return (
       <div className="context-strip">
-        <a className="context-area left-context" href="/">feed</a>
+        <div className="context-area left-context">
+          <Link className="btn btn-link" to="/">feed</Link>
+        </div>
 
         <div className="context-area right-context">
           {

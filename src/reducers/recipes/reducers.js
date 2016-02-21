@@ -9,12 +9,13 @@ const initialState = {
     websiteRecipe: null,
     websiteError: null,
     loading: false,
-    onlineRecipes: [],
-    localRecipes: []
+    onlineRecipes: {},
+    localRecipes: {}
 };
 
 export default function recipe(state = initialState, action = {}) {
     let onlineRecipes = state.onlineRecipes;
+    let localRecipes = state.localRecipes;
 
     switch (action.type) {
         case types.LOADING:
@@ -55,6 +56,19 @@ export default function recipe(state = initialState, action = {}) {
             return {
                 ...state,
                 onlineRecipes: onlineRecipes
+            };
+        case types.LOCALRECIPEADDED:
+            console.log(action);
+            localRecipes[action.key] = action.value;
+            return {
+                ...state,
+                localRecipes: localRecipes
+            };
+        case types.LOCALRECIPEREMOVED:
+            delete localRecipes[action.key];
+            return {
+                ...state,
+                localRecipes: localRecipes
             };
         case types.RESET:
             return {

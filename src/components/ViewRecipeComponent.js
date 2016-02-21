@@ -43,24 +43,25 @@ class ViewRecipeComponent extends React.Component {
 
     return recipe ?
       <div className="recipe">
-        <div className="image-slider">
-          <img src={ recipe.image } className="img-responsive" />
+        <div className="image-slider" style={{ background: 'url(\'' + recipe.image + '\')', backgroundPosition: 'center center', backgroundSize: 'cover'}}></div>
+
+        <div className="recipe-info">
+          <div className="text-center">
+            <button className={ 'btn ' + (savedRecipe ?  'btn-danger' : 'btn-success') } onClick={ () => savedRecipe ? this.props.removeOnlineRecipe(recipe) : this.props.addOnlineRecipe(recipe) }>
+              <i className="fa fa-heart" />
+            </button>
+            <h2>{ recipe.title }</h2>
+          </div>
+          <RecipeBadge recipe={recipe} />
+          <ul>
+            {
+                recipe.extendedIngredients.map((ingredient,i) => {
+                  return <li key={i}>{ ingredient.amount + ' ' + ingredient.unit + ' ' + ingredient.name }</li>
+                })
+            }
+          </ul>
+          { website ? <Instructions steps={ website.text } /> : null }
         </div>
-        <div className="text-center">
-          <button className={ 'btn ' + (savedRecipe ?  'btn-danger' : 'btn-success') } onClick={ () => savedRecipe ? this.props.removeOnlineRecipe(recipe) : this.props.addOnlineRecipe(recipe) }>
-            <i className="fa fa-heart" />
-          </button>
-          <h2>{ recipe.title }</h2>
-        </div>
-        <RecipeBadge recipe={recipe} />
-        <ul>
-          {
-              recipe.extendedIngredients.map((ingredient,i) => {
-                return <li key={i}>{ ingredient.amount + ' ' + ingredient.unit + ' ' + ingredient.name }</li>
-              })
-          }
-        </ul>
-        { website ? <Instructions steps={ website.text } /> : null }
       </div> : null;
   }
 

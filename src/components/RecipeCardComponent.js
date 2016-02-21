@@ -10,7 +10,7 @@ class RecipeCardComponent extends React.Component {
 
   render() {
     const { recipe } = this.props;
-    const image = this.props.hideImage ? <span /> : <img className="img-responsive" src={IMAGE_URI + recipe.image} />;
+    const image = this.props.hideImage ? <span /> : <img className="img-responsive" src={IMAGE_URI + recipe.image.replace(IMAGE_URI, '')} />;
 
     return (
       <div className="recipecard-component">

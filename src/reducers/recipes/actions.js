@@ -97,7 +97,7 @@ function extractWebsiteComplete(error, website) {
     };
 }
 
-export function setOnlineRecipeListeners() {
+export function setRecipeListeners() {
     return dispatch => {
         let authData = loginRef.getAuth();
         if (authData) {
@@ -109,11 +109,21 @@ export function setOnlineRecipeListeners() {
                 dispatch(setOnlineRecipeRemoveComplete(snapshot));
             });
 
+            const localRecipeRef = new Firebase(endPoint + '/users/' + authData.uid + '/localRecipes/');
+            localRecipeRef.on('child_added', (snapshot) => {
+                let val = snapshot.val();
+                val.id = snapshot.key();
+                dispatch(setLocalRecipeAddComplete(snapshot.key(), val));
+            });
+            localRecipeRef.on('child_removed', (snapshot) => {
+                dispatch(setLocalRecipeRemoveComplete(snapshot.key(), snapshot.val()));
+            });
+
             loginRef.onAuth((authData) => {
                 if (!authData) {
                     dispatch(reset());
                 }
-            })
+            });
         }
     }
 }
@@ -137,6 +147,22 @@ function setOnlineRecipeRemoveComplete(snapshot) {
         type: types.ONLINERECIPEREMOVED,
         key: snapshot.key(),
         value: snapshot.val()
+    };
+}
+
+function setLocalRecipeAddComplete(key, val) {
+    return {
+        type: types.LOCALRECIPEADDED,
+        key: key,
+        value: val
+    };
+}
+
+function setLocalRecipeRemoveComplete(key, val) {
+    return {
+        type: types.LOCALRECIPEREMOVED,
+        key: key,
+        value: val
     };
 }
 

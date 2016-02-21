@@ -23,7 +23,7 @@ class PageOne extends React.Component {
 			errors: {},
 		};
 
-		const name = this.refs.name.value;
+		const name = this.refs.title.value;
 		const description = this.refs.description.value;
 
 		if (!name) {
@@ -44,7 +44,7 @@ class PageOne extends React.Component {
 
 	    if (!validate || this.validate()) {
 	      this.props.save({
-	      	name: this.refs.name.value,
+	      	title: this.refs.title.value,
 	      	description: this.refs.description.value,
 	      }, true);
 	    }
@@ -64,10 +64,10 @@ class PageOne extends React.Component {
           	className="recipe-description textbox"
           	autofocus
           	placeholder="Filet Mignon Flip.." 
-          	defaultValue={this.props.data.name} 
+          	defaultValue={this.props.data.title}
           	onChange={this.onChange.bind(this)} 
           	type="text" 
-          	ref="name" />
+          	ref="title" />
 
           	<span  className="recipe-description">,</span>
           	<br/>

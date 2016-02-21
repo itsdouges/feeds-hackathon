@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import structs from '../constants/structs';
 import t from 'tcomb-form';
 
-import RecipeCard from './RecipeCardComponent';
+import RecipeList from './RecipeListComponent';
 
 import '../styles/FindRecipe.less';
 
@@ -67,17 +67,7 @@ class FindRecipeComponent extends React.Component {
     const model = this.props.state.recipe;
 
     return model.results.length > 0 ?
-      <ul>
-        {
-          model.results.map((recipe, i) => {
-            return (
-              <li key={i}>
-                <RecipeCard recipe={recipe} />
-              </li>
-            )
-          })
-        }
-      </ul>
+      <RecipeList recipes={model.results} />
       : null;
   }
 

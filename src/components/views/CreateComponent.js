@@ -1,6 +1,9 @@
 'use strict';
 
 import React from 'react';
+import { mapStateToProps, mapDispatchToProps } from '../../reducers/mapping';
+import { connect } from 'react-redux';
+import { browserHistory } from 'react-router';
 
 import Description from './CreatePageOneComponent';
 import Ingredients from './CreatePageTwoComponent';
@@ -89,11 +92,14 @@ class CreateComponent extends React.Component {
     }
 
     finish () {
-        console.log({
+        console.log('Creating local recipe');
+        this.props.addLocalRecipe({
             ...this.state[1].data,
             ...this.state[2].data,
-            ...this.state[3].data,
+            ...this.state[3].data
         });
+
+        browserHistory.push('/recipe/saved');
     }
 
     setValid (valid) {
@@ -154,4 +160,4 @@ CreateComponent.displayName = 'ViewsCreateComponent';
 // CreateComponent.propTypes = {};
 // CreateComponent.defaultProps = {};
 
-export default CreateComponent;
+export default connect(mapStateToProps, mapDispatchToProps)(CreateComponent);
