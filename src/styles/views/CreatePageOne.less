@@ -1,3 +1,53 @@
-.createpageone-component {
-  border: 1px dashed #f00;
+.recipe-description {
+	font-size: 2em;
+
+	&.textbox,
+	&.textarea {
+		background: none;
+		outline: none;
+		border: none;
+		border-bottom: 1px solid rgba(0, 0, 0, 0.5);
+		color: white;
+		font-style: italic;
+		font-weight: 100;
+		padding: 3px;
+
+		&.small {
+			max-width: 100px;
+		}
+
+		&.big {
+			width: 300px;
+		}
+	}
+
+	&.textarea {
+		resize: vertical; 
+		max-width: 	100%;
+		min-height: 5em;
+	}
+}
+
+.create-textarea {
+	display: flex;
+	align-items: top;
+	justify-content: center;
+}
+
+.recipe-description::-webkit-input-placeholder { /* WebKit, Blink, Edge */
+    background: rgba(0, 0, 0, 0.1);
+}
+.recipe-description:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+   background: rgba(0, 0, 0, 0.1);
+   opacity:  1;
+}
+.recipe-description::-moz-placeholder { /* Mozilla Firefox 19+ */
+   background: rgba(0, 0, 0, 0.1);
+   opacity:  1;
+}
+.recipe-description:-ms-input-placeholder { /* Internet Explorer 10-11 */
+   background: rgba(0, 0, 0, 0.1);
+}
+.recipe-description:placeholder-shown { /* Standard (https://drafts.csswg.org/selectors-4/#placeholder) */
+  background: rgba(0, 0, 0, 0.1);
 }

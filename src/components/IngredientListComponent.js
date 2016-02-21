@@ -46,7 +46,9 @@ class IngredientListComponent extends React.Component {
   	});
 
     return (
-      <div className="ingredientlist-component">
+      <div style={{
+        marginTop: '3em'
+      }}>
         <div>{ingredients}</div>
 
         <CreateIngredient onAdd={this.addIngredient.bind(this)} />

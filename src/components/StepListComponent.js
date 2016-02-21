@@ -49,10 +49,14 @@ class StepListComponent extends React.Component {
 		);
   	});
 
+    const stepNumber = this.state.steps.length > 0 ? 'Then' : 'First';
+
     return (
-      <div className="steplist-component">
+      <div className="steplist-component" style={{
+        marginTop: '3em'
+      }}>
         {steps}
-        <CreateSteps onAdd={this.add.bind(this)}  />
+        <CreateSteps stepNumber={stepNumber} onAdd={this.add.bind(this)}  />
       </div>
     );
   }

@@ -13,11 +13,15 @@ class IngredientComponent extends React.Component {
 
   render() {
     return (
-      <div className="ingredient-component">
-      	<div>{this.props.data.name}</div>
-      	<div>{this.props.data.unit}</div>
-      	<div>{this.props.data.amount}</div>
-        <button onClick={this.remove.bind(this)}>Remove ME</button>
+      <div style={{
+        margin: '1em 0'
+      }}>
+        <span className="recipe-description">{this.props.data.amount} </span>
+        <span className="recipe-description">{this.props.data.unit}</span>
+        <span className="recipe-description"> of </span>
+        <span className="recipe-description">{this.props.data.name}</span>
+
+        <a className="icon-button" onClick={this.remove.bind(this)}><i className="fa fa-times"></i></a>
       </div>
     );
   }

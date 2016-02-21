@@ -8,11 +8,15 @@ class StepComponent extends React.Component {
 	}
 
   render() {
-    return (
-      <div className="step-component">
-  		Step {this.props.number}: {this.props.data.text}
+    console.log(this.props.number);
+    const stepNumber = this.props.number > 0 ? 'Then' : 'First';
 
-  		<button onClick={this.remove.bind(this)}>REMOVE</button>
+    return (
+      <div className="step-component"> 
+        <span className="recipe-description">{stepNumber}, </span>
+        <span className="recipe-description">{this.props.data.text}</span>
+
+        <a className="icon-button" onClick={this.remove.bind(this)}><i className="fa fa-times"></i></a>
       </div>
     );
   }

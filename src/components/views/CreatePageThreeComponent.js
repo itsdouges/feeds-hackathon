@@ -46,7 +46,10 @@ class PageThree extends React.Component {
 
     return (
       <div className="page">
-    	<StepList onChange={this.onChange.bind(this)} defaultValue={this.state.steps} />
+      	<div>
+	      	<span className="recipe-description">To make it, you need to..</span>
+	    	<StepList onChange={this.onChange.bind(this)} defaultValue={this.state.steps} />
+    	</div>
       </div>
     );
   }

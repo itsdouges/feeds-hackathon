@@ -1,6 +1,7 @@
 'use strict';
 
 import React from 'react';
+import '../../styles/views/CreatePageOne.less';
 
 class PageOne extends React.Component {
 	constructor () {
@@ -57,24 +58,31 @@ class PageOne extends React.Component {
     return (
       <div className="page">
         <form>
-        <h2>tell me about it</h2>
+        	<span className="recipe-description">Let's make my </span>
 
-          <input 
-          	placeholder="Name" 
+          <input
+          	className="recipe-description textbox"
+          	autofocus
+          	placeholder="Filet Mignon Flip.." 
           	defaultValue={this.props.data.name} 
           	onChange={this.onChange.bind(this)} 
           	type="text" 
           	ref="name" />
 
+          	<span  className="recipe-description">,</span>
           	<br/>
+          	<br/>
+          	
+          	<span className="recipe-description">it's a </span> 
 
           <input 
-          	placeholder="Description"
+          	className="recipe-description textbox long"
+          	placeholder="steak with a twist.."
           	defaultValue={this.props.data.description} 
           	onChange={this.onChange.bind(this)} 
           	type="text" 
           	ref="description" />
-
+          	<span className="recipe-description">!</span> 
           <button
           	style={{display:'none'}}
               type="submit"

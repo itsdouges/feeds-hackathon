@@ -7,16 +7,16 @@ class CreateStepsComponent extends React.Component {
 	constructor () {
 		super();
 		this.state = {
-			adding: false,
+			// adding: false,
 		};
 	}
 
-	addMode (adding) {
-		this.setState({
-			...this.state,
-			adding: adding,
-		});
-	}
+	// addMode (adding) {
+	// 	this.setState({
+	// 		...this.state,
+	// 		adding: adding,
+	// 	});
+	// }
 
 	add (e) {
 		e.preventDefault();
@@ -41,28 +41,30 @@ class CreateStepsComponent extends React.Component {
 	}
 
 	reset () {
-		this.setState({
-			...this.state,
-			adding: false,
-		})
+		this.refs.text.value = '';
+		this.refs.text.focus();
+		// this.setState({
+		// 	...this.state,
+		// 	adding: false,
+		// })
 	}
 
   render() {
-  	const form = this.state.adding && (
+  	const form = (
 		<form>
-  			<input autoFocus ref="text" type="text" placeholder="Step" /><br/>
-  			<button onClick={this.add.bind(this)}>add!</button>
+			<span className="recipe-description">{this.props.stepNumber}, </span>
+  			<input className="recipe-description textbox big" autoFocus ref="text" type="text" placeholder="put the fry pan on medium heat.." />
+  			<button style={{background: 'none', border: 'none', outline: 'none', fontSize: '1.7em'}} onClick={this.add.bind(this)}><i className="fa fa-plus"></i></button>
   		</form>
 	);
 
-	const modeButton = this.state.adding ? 
-		<button onClick={(e) => { e.preventDefault(); this.addMode.call(this, false); }}>-</button> :
-		<button onClick={(e) => { e.preventDefault(); this.addMode.call(this, true); }}>+</button>;
+	// const modeButton = this.state.adding ? 
+	// 	<button onClick={(e) => { e.preventDefault(); this.addMode.call(this, false); }}>-</button> :
+	// 	<button onClick={(e) => { e.preventDefault(); this.addMode.call(this, true); }}>+</button>;
 
     return (
       <div className="step-component">
         {form}
-        {modeButton}
       </div>
     );
   }

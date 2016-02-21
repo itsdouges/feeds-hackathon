@@ -7,16 +7,17 @@ class CreateIngredientComponent extends React.Component {
 	constructor () {
 		super();
 		this.state = {
-			adding: false,
+			// adding: true,
+			// initialAdd: true,
 		};
 	}
 
-	addMode (adding) {
-		this.setState({
-			...this.state,
-			adding: adding,
-		});
-	}
+	// addMode (adding) {
+	// 	this.setState({
+	// 		...this.state,
+	// 		adding: adding,
+	// 	});
+	// }
 
 	add (e) {
 		e.preventDefault();
@@ -29,6 +30,10 @@ class CreateIngredientComponent extends React.Component {
 	}
 
 	getIngredient () {
+		if (!this.refs.name) {
+			return undefined;
+		}
+
 		const item = {
 			name: this.refs.name.value,
 			amount: this.refs.amount.value,
@@ -43,30 +48,38 @@ class CreateIngredientComponent extends React.Component {
 	}
 
 	reset () {
-		this.setState({
-			...this.state,
-			adding: false,
-		})
+		// this.setState({
+		// 	...this.state,
+		// 	// adding: true,
+		// 	initialAdd: false,
+		// });
+
+		this.refs.amount.value = '';
+		this.refs.unit.value = '';
+		this.refs.name.value = '';
+		this.refs.amount.focus();
 	}
 
   render() {
-  	const form = this.state.adding && (
+  	const form = (
 		<form>
-  			<input autoFocus ref="name" type="text" placeholder="Name" /><br/>
-  			<input ref="amount" type="text" placeholder="Amount" /><br/>
-  			<input ref="unit" type="text" placeholder="Unit" /><br/>
-  			<button onClick={this.add.bind(this)}>add!</button>
+  			<input className="recipe-description textbox small" ref="amount" type="text" placeholder="250" /> 
+  			<input className="recipe-description textbox small" ref="unit" type="text" placeholder="grams" /> 
+  			<span className="recipe-description"> of </span>
+  			<input className="recipe-description textbox" autoFocus ref="name" type="text" placeholder="Rib Eye Steak" />
+  			<button style={{background: 'none', border: 'none', outline: 'none', fontSize: '1.7em'}} onClick={this.add.bind(this)}><i className="fa fa-plus"></i></button>
   		</form>
 	);
 
-	const modeButton = this.state.adding ? 
-		<button onClick={(e) => { e.preventDefault(); this.addMode.call(this, false); }}>-</button> :
-		<button onClick={(e) => { e.preventDefault(); this.addMode.call(this, true); }}>+</button>;
+	// const modeButton = !this.state.initialAdd && (
+	// 	this.state.adding ? 
+	// 	<button onClick={(e) => { e.preventDefault(); this.addMode.call(this, false); }}>-</button> :
+	// 	<button onClick={(e) => { e.preventDefault(); this.addMode.call(this, true); }}>+</button>
+	// );
 
     return (
-      <div className="createingredient-component">
+      <div className="page">
         {form}
-        {modeButton}
       </div>
     );
   }

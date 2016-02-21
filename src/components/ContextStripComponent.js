@@ -7,7 +7,8 @@ require('styles//ContextStrip.less');
 class ContextStripComponent extends React.Component {
   render() {
     return (
-      <div className="contextstrip-component">
+      <div className="context-strip">
+      	<a href="/">feed</a>
       </div>
     );
   }
