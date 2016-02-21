@@ -9,6 +9,15 @@ import 'normalize.css';
 import '../styles/Layout.less';
 
 class LayoutComponent extends React.Component {
+
+  constructor(props) {
+    super(props);
+  }
+
+  componentDidMount() {
+    this.props.checkAuth();
+  }
+
   render() {
     return (
       <div className="layout-component container">
