@@ -7,7 +7,7 @@
 // import TestUtils from 'react-addons-test-utils';
 import createComponent from 'helpers/shallowRenderHelper';
 
-import InstructionsComponent from 'components//InstructionsComponent.js';
+import InstructionsComponent from 'components/InstructionsComponent.js';
 
 describe('InstructionsComponent', () => {
   let component;

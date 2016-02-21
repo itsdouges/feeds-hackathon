@@ -7,7 +7,7 @@
 // import TestUtils from 'react-addons-test-utils';
 import createComponent from 'helpers/shallowRenderHelper';
 
-import CreateStepsComponent from 'components//CreateStepsComponent.js';
+import CreateStepsComponent from 'components/CreateStepsComponent.js';
 
 describe('CreateStepsComponent', () => {
   let component;

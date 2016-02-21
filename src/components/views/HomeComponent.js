@@ -1,7 +1,7 @@
 import React from 'react';
-import { mapStateToProps, mapDispatchToProps } from '../reducers/mapping';
+import { mapStateToProps, mapDispatchToProps } from '../../reducers/mapping';
 import { connect } from 'react-redux';
-import '../styles/Home.less';
+import '../../styles/views/Home.less';
 
 class HomeComponent extends React.Component {
   render() {

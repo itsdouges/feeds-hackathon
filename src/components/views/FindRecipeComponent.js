@@ -1,14 +1,14 @@
 'use strict';
 
 import React from 'react';
-import { mapStateToProps, mapDispatchToProps } from '../reducers/mapping';
+import { mapStateToProps, mapDispatchToProps } from '../../reducers/mapping';
 import { connect } from 'react-redux';
-import structs from '../constants/structs';
+import structs from '../../constants/structs';
 import t from 'tcomb-form';
 
-import RecipeList from './RecipeListComponent';
+import RecipeList from './../RecipeListComponent';
 
-import '../styles/FindRecipe.less';
+import '../../styles/views/FindRecipe.less';
 
 const Form = t.form.Form;
 const FormSchema = t.struct({

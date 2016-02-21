@@ -2,12 +2,12 @@
 
 import React from 'react';
 
-require('styles//MyListsViewComponent.less');
+import '../styles/MyListsView.less';
 
-class MyListsViewComponentComponent extends React.Component {
+class MyListsViewComponent extends React.Component {
   render() {
     return (
-      <div className="page">
+      <div className="mylistview-component page">
       	<div>
 	        list of shopping lists
 	        <br />
@@ -18,10 +18,10 @@ class MyListsViewComponentComponent extends React.Component {
   }
 }
 
-MyListsViewComponentComponent.displayName = 'MyListsViewComponentComponent';
+MyListsViewComponent.displayName = 'MyListsViewComponent';
 
 // Uncomment properties you need
 // MyListsViewComponentComponent.propTypes = {};
 // MyListsViewComponentComponent.defaultProps = {};
 
-export default MyListsViewComponentComponent;
+export default MyListsViewComponent;

@@ -7,7 +7,7 @@
 // import TestUtils from 'react-addons-test-utils';
 import createComponent from 'helpers/shallowRenderHelper';
 
-import SearchBarComponent from 'components//SearchBarComponent.js';
+import SearchBarComponent from 'components/SearchBarComponent.js';
 
 describe('SearchBarComponent', () => {
   let component;

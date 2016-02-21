@@ -7,16 +7,16 @@
 // import TestUtils from 'react-addons-test-utils';
 import createComponent from 'helpers/shallowRenderHelper';
 
-import ErrorComponent from 'components//ErrorComponent.js';
+import HomeComponent from 'components/views/HomeComponent.js';
 
-describe('ErrorComponent', () => {
+describe('HomeComponent', () => {
   let component;
 
   beforeEach(() => {
-    component = createComponent(ErrorComponent);
+    component = createComponent(HomeComponent);
   });
 
   it('should have its component name as default className', () => {
-    expect(component.props.className).to.equal('error-component');
+    expect(component.props.className).to.equal('home-component');
   });
 });

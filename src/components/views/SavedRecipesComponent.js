@@ -1,12 +1,12 @@
 'use strict';
 
 import React from 'react';
-import { mapStateToProps, mapDispatchToProps } from '../reducers/mapping';
+import { mapStateToProps, mapDispatchToProps } from '../../reducers/mapping';
 import { connect } from 'react-redux';
 
-import RecipeList from './RecipeListComponent';
+import RecipeList from './../RecipeListComponent';
 
-import '../styles/SavedRecipes.less';
+import '../../styles/views/SavedRecipes.less';
 
 class SavedRecipesComponent extends React.Component {
   constructor(props) {

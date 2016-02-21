@@ -7,7 +7,7 @@
 // import TestUtils from 'react-addons-test-utils';
 import createComponent from 'helpers/shallowRenderHelper';
 
-import CreateIngredientComponent from 'components//CreateIngredientComponent.js';
+import CreateIngredientComponent from 'components/CreateIngredientComponent.js';
 
 describe('CreateIngredientComponent', () => {
   let component;

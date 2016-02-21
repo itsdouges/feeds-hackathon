@@ -7,7 +7,7 @@
 // import TestUtils from 'react-addons-test-utils';
 import createComponent from 'helpers/shallowRenderHelper';
 
-import RecipeListComponent from 'components//RecipeListComponent.js';
+import RecipeListComponent from 'components/RecipeListComponent.js';
 
 describe('RecipeListComponent', () => {
   let component;

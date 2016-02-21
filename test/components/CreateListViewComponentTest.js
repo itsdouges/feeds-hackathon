@@ -7,7 +7,7 @@
 // import TestUtils from 'react-addons-test-utils';
 import createComponent from 'helpers/shallowRenderHelper';
 
-import CreateListViewComponent from 'components//CreateListViewComponent.js';
+import CreateListViewComponent from 'components/CreateListViewComponent.js';
 
 describe('CreateListViewComponent', () => {
   let component;

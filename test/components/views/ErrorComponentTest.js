@@ -7,16 +7,16 @@
 // import TestUtils from 'react-addons-test-utils';
 import createComponent from 'helpers/shallowRenderHelper';
 
-import ContextStripComponent from 'components//ContextStripComponent.js';
+import ErrorComponent from 'components/views/ErrorComponent.js';
 
-describe('ContextStripComponent', () => {
+describe('ErrorComponent', () => {
   let component;
 
   beforeEach(() => {
-    component = createComponent(ContextStripComponent);
+    component = createComponent(ErrorComponent);
   });
 
   it('should have its component name as default className', () => {
-    expect(component.props.className).to.equal('contextstrip-component');
+    expect(component.props.className).to.equal('error-component');
   });
 });

@@ -7,16 +7,16 @@
 // import TestUtils from 'react-addons-test-utils';
 import createComponent from 'helpers/shallowRenderHelper';
 
-import FindRecipeComponent from 'components//FindRecipeComponent.js';
+import SavedRecipesComponent from 'components/views/SavedRecipesComponent.js';
 
-describe('FindRecipeComponent', () => {
+describe('SavedRecipesComponent', () => {
   let component;
 
   beforeEach(() => {
-    component = createComponent(FindRecipeComponent);
+    component = createComponent(SavedRecipesComponent);
   });
 
   it('should have its component name as default className', () => {
-    expect(component.props.className).to.equal('findrecipe-component');
+    expect(component.props.className).to.equal('savedrecipes-component');
   });
 });

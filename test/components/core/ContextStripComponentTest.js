@@ -7,16 +7,16 @@
 // import TestUtils from 'react-addons-test-utils';
 import createComponent from 'helpers/shallowRenderHelper';
 
-import ViewRecipeComponent from 'components//ViewRecipeComponent.js';
+import ContextStripComponent from 'components/core/ContextStripComponent.js';
 
-describe('ViewRecipeComponent', () => {
+describe('ContextStripComponent', () => {
   let component;
 
   beforeEach(() => {
-    component = createComponent(ViewRecipeComponent);
+    component = createComponent(ContextStripComponent);
   });
 
   it('should have its component name as default className', () => {
-    expect(component.props.className).to.equal('viewrecipe-component');
+    expect(component.props.className).to.equal('contextstrip-component');
   });
 });

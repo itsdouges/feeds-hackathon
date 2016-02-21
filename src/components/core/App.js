@@ -4,17 +4,17 @@ import { createStore, applyMiddleware, combineReducers } from 'redux';
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
 
-import * as reducers from '../reducers';
+import * as reducers from '../../reducers';
 
 import Layout from './LayoutComponent';
-import Home from './HomeComponent';
-import Error from './ErrorComponent';
-import CreateView from './views/CreateComponent';
-import FindRecipe from './FindRecipeComponent';
-import SavedRecipes from './SavedRecipesComponent';
-import ViewRecipe from './ViewRecipeComponent';
-import MyListsView from './MyListsViewComponent';
-import CreateListView from './CreateListViewComponent';
+import Home from '../views/HomeComponent';
+import Error from '../views/ErrorComponent';
+import CreateView from '../views/CreateComponent';
+import FindRecipe from '../views/FindRecipeComponent';
+import SavedRecipes from '../views/SavedRecipesComponent';
+import ViewRecipe from '../views/ViewRecipeComponent';
+import MyListsView from '../MyListsViewComponent';
+import CreateListView from '../CreateListViewComponent';
 
 const createStoreWithMiddleware = applyMiddleware(thunk)(createStore);
 const reducer = combineReducers(reducers);

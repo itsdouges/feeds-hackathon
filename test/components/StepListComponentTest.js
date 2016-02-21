@@ -7,7 +7,7 @@
 // import TestUtils from 'react-addons-test-utils';
 import createComponent from 'helpers/shallowRenderHelper';
 
-import StepListComponent from 'components//StepListComponent.js';
+import StepListComponent from 'components/StepListComponent.js';
 
 describe('StepListComponent', () => {
   let component;

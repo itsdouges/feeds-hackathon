@@ -1,16 +1,17 @@
 'use strict';
 
 import React from 'react';
-import { mapStateToProps, mapDispatchToProps } from '../reducers/mapping';
+import { mapStateToProps, mapDispatchToProps } from '../../reducers/mapping';
 import { connect } from 'react-redux';
 
-import '../styles/Error.less';
+import '../../styles/views/Error.less';
 
 class ErrorComponent extends React.Component {
   render() {
     return (
       <div className="error-component">
-        Please edit src/components///ErrorComponent.js to update this component!
+        <i className="fa fa-frown-o" />
+        <span>404</span>
       </div>
     );
   }

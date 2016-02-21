@@ -1,7 +1,7 @@
 import 'core-js/fn/object/assign';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './components/App';
+import App from './components/core/App';
 
 // Render the main component into the dom
 ReactDOM.render(<App />, document.getElementById('app'));

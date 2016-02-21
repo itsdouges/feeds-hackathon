@@ -7,7 +7,7 @@
 // import TestUtils from 'react-addons-test-utils';
 import createComponent from 'helpers/shallowRenderHelper';
 
-import RecipeBadgeComponent from 'components//RecipeBadgeComponent.js';
+import RecipeBadgeComponent from 'components/RecipeBadgeComponent.js';
 
 describe('RecipeBadgeComponent', () => {
   let component;

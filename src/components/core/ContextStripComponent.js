@@ -1,11 +1,11 @@
 'use strict';
 
 import React from 'react';
-import { mapStateToProps, mapDispatchToProps } from '../reducers/mapping';
+import { mapStateToProps, mapDispatchToProps } from '../../reducers/mapping';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
 
-import '../styles/ContextStrip.less';
+import '../../styles/core/ContextStrip.less';
 
 class ContextStripComponent extends React.Component {
 

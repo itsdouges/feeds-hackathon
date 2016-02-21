@@ -7,16 +7,16 @@
 // import TestUtils from 'react-addons-test-utils';
 import createComponent from 'helpers/shallowRenderHelper';
 
-import HomeComponent from 'components//HomeComponent.js';
+import ViewRecipeComponent from 'components/views/ViewRecipeComponent.js';
 
-describe('HomeComponent', () => {
+describe('ViewRecipeComponent', () => {
   let component;
 
   beforeEach(() => {
-    component = createComponent(HomeComponent);
+    component = createComponent(ViewRecipeComponent);
   });
 
   it('should have its component name as default className', () => {
-    expect(component.props.className).to.equal('home-component');
+    expect(component.props.className).to.equal('viewrecipe-component');
   });
 });

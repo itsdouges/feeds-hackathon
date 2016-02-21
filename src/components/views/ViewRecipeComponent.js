@@ -1,13 +1,13 @@
 'use strict';
 
 import React from 'react';
-import { mapStateToProps, mapDispatchToProps } from '../reducers/mapping';
+import { mapStateToProps, mapDispatchToProps } from '../../reducers/mapping';
 import { connect } from 'react-redux';
 
-import RecipeBadge from './RecipeBadgeComponent';
-import Instructions from './InstructionsComponent';
+import RecipeBadge from './../RecipeBadgeComponent';
+import Instructions from './../InstructionsComponent';
 
-import '../styles/ViewRecipe.less';
+import '../../styles/views/ViewRecipe.less';
 
 class ViewRecipeComponent extends React.Component {
 
