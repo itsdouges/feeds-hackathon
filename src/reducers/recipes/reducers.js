@@ -9,6 +9,7 @@ const initialState = {
     websiteRecipe: null,
     websiteError: null,
     loading: false,
+    loadingWebsite: false,
     onlineRecipes: {},
     localRecipes: {}
 };
@@ -23,6 +24,11 @@ export default function recipe(state = initialState, action = {}) {
                 ...state,
                 loading: true
             };
+        case types.LOADINGWEBSITE:
+            return {
+                ...state,
+                loadingWebsite: true
+            };
         case types.FINDRECIPES:
             console.log(action.results);
             return {
@@ -36,14 +42,16 @@ export default function recipe(state = initialState, action = {}) {
             return {
                 ...state,
                 viewRecipe: action.recipe,
-                recipeError: action.error
+                recipeError: action.error,
+                loading: false
             };
         case types.EXTRACTWEBSITE:
             console.log(action.website);
             return {
                 ...state,
                 websiteRecipe: action.website,
-                websiteError: action.error
+                websiteError: action.error,
+                loadingWebsite: false
             };
         case types.ONLINERECIPEADDED:
             onlineRecipes[action.key] = action.value;
@@ -73,8 +81,8 @@ export default function recipe(state = initialState, action = {}) {
         case types.RESET:
             return {
                 ...state,
-                onlineRecipes: [],
-                localRecipes: []
+                onlineRecipes: {},
+                localRecipes: {}
             };
         default:
             return state;

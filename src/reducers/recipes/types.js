@@ -1,6 +1,7 @@
 'use strict';
 
 export const LOADING = 'LOADING';
+export const LOADINGWEBSITE = 'LOADINGWEBSITE';
 export const CREATERECIPE = 'CREATERECIPE';
 export const FINDRECIPES = 'FINDRECIPES';
 export const VIEWRECIPE = 'VIEWRECIPE';

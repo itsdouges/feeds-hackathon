@@ -19,7 +19,7 @@ class SavedRecipesComponent extends React.Component {
 
     return (
       <div className="savedrecipes-component">
-        <RecipeList recipes={localRecipes} local />
+        <RecipeList recipes={localRecipes} isLocal />
         <RecipeList recipes={onlineRecipes} />
       </div>
     );

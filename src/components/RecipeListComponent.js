@@ -19,7 +19,7 @@ class RecipeListComponent extends React.Component {
         <ul>
           {
             Object.keys(recipes).map((key, i) => {
-              return <li key={i}><RecipeCard recipe={recipes[key]} hideImage={this.props.local} /></li>
+              return <li key={i}><RecipeCard recipe={recipes[key]} isLocal={this.props.isLocal} /></li>
             })
           }
         </ul>
@@ -32,8 +32,8 @@ RecipeListComponent.displayName = 'RecipeListComponent';
 
 // Uncomment properties you need
 RecipeListComponent.propTypes = {
-  recipes: React.PropTypes.object,
-  local: React.PropTypes.bool
+  recipes: React.PropTypes.any,
+  isLocal: React.PropTypes.bool
 };
 // RecipeListComponent.defaultProps = {};
 

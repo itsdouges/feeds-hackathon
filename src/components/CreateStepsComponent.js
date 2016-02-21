@@ -29,11 +29,9 @@ class CreateStepsComponent extends React.Component {
 	}
 
 	getData () {
-		const data = {
-			text: this.refs.text.value,
-		};
+		const data = this.refs.text.value;
 
-		if (data.text) {
+		if (data) {
 			return data;
 		}
 

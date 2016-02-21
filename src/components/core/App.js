@@ -13,6 +13,7 @@ import CreateView from '../views/CreateComponent';
 import FindRecipe from '../views/FindRecipeComponent';
 import SavedRecipes from '../views/SavedRecipesComponent';
 import ViewRecipe from '../views/ViewRecipeComponent';
+import ViewLocalRecipe from '../views/ViewLocalRecipeComponent';
 import MyListsView from '../MyListsViewComponent';
 import CreateListView from '../CreateListViewComponent';
 
@@ -29,7 +30,8 @@ class AppComponent extends React.Component {
           <Route path='/' component={Layout}>
             <Route path='/recipe/find' component={FindRecipe} />
             <Route path='/recipe/create' component={CreateView} />
-            <Route path='/recipe/view/:recipeId' component={ViewRecipe} />
+            <Route path='/recipe/view/online/:recipeId' component={ViewRecipe} />
+            <Route path='/recipe/view/local/:recipeId' component={ViewLocalRecipe} />
             <Route path='/recipe/saved' component={SavedRecipes} />
 
             <Route path='/lists' component={MyListsView} />

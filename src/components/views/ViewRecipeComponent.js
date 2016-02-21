@@ -60,7 +60,7 @@ class ViewRecipeComponent extends React.Component {
                 })
             }
           </ul>
-          { website ? <Instructions steps={ website.text } /> : null }
+          { website ? (state.recipe.loadingWebsite ? <i className="fa fa-refresh fa-spin loading" /> : <Instructions steps={ website.text } />) : null }
         </div>
       </div> : null;
   }
@@ -70,7 +70,7 @@ class ViewRecipeComponent extends React.Component {
 
     return (
       <div className="viewrecipe-component">
-        { state.recipe.loading ? this.getRecipeView() : <i className="fa fa-refresh fa-spin loading" /> }
+        { !state.recipe.loading ? this.getRecipeView() : <i className="fa fa-refresh fa-spin loading" /> }
       </div>
     );
   }

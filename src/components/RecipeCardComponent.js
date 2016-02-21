@@ -11,11 +11,12 @@ class RecipeCardComponent extends React.Component {
 
   render() {
     const { recipe } = this.props;
-    const image = this.props.hideImage ? <span /> : <img className="img-responsive" src={IMAGE_URI + recipe.image.replace(IMAGE_URI, '')} />;
+    const image = this.props.isLocal ? <img className="img-responsive" src={IMAGE_URI + 'default.png'} />
+        : <img className="img-responsive" src={IMAGE_URI + recipe.image.replace(IMAGE_URI, '')} />;
 
     return (
       <div className="recipecard-component">
-        <Link to={ '/recipe/view/' + recipe.id }>
+        <Link to={ '/recipe/view/' + (this.props.isLocal ? 'local' : 'online') + '/' + recipe.id }>
           {image}
           <div className="title">
             { recipe.title }
@@ -29,7 +30,8 @@ class RecipeCardComponent extends React.Component {
 RecipeCardComponent.displayName = 'RecipeCardComponent';
 
 RecipeCardComponent.propTypes = {
-  recipe: React.PropTypes.object
+  recipe: React.PropTypes.object,
+  isLocal: React.PropTypes.bool
 };
 // RecipeCardComponent.defaultProps = {};
 
