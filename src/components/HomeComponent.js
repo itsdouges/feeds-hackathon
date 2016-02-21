@@ -10,11 +10,11 @@ class HomeComponent extends React.Component {
       	<div className="hero-icon"></div>
         <h1 className="title-hero">feed</h1>
 
-        <ul className="home-actions">
-        	<li><a href="/recipe/find">Find</a></li>
-        	<li><a href="/create">Create</a></li>
-        	<li><a href="/saved">Saved</a></li>
-        </ul>
+        <div className="home-actions">
+        	<a href="/recipe/find">Find</a>
+        	<a href="/create">Create</a>
+        	<a href="/saved">Saved</a>
+        </div>
       </div>
     );
   }

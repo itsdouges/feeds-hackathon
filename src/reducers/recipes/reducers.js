@@ -5,7 +5,9 @@ import * as types from './types';
 const initialState = {
     results: [],
     viewRecipe: null,
-    error: null,
+    recipeError: null,
+    websiteRecipe: null,
+    websiteError: null,
     loading: false
 };
 
@@ -14,15 +16,14 @@ export default function recipe(state = initialState, action = {}) {
         case types.LOADING:
             return {
                 ...state,
-                loading: true,
-                error: null
+                loading: true
             };
         case types.FINDRECIPES:
             console.log(action.results);
             return {
                 ...state,
                 results: action.results,
-                error: action.error,
+                recipeError: action.error,
                 loading: false
             };
         case types.VIEWRECIPE:
@@ -30,7 +31,14 @@ export default function recipe(state = initialState, action = {}) {
             return {
                 ...state,
                 viewRecipe: action.recipe,
-                error: action.error
+                recipeError: action.error
+            };
+        case types.EXTRACTWEBSITE:
+            console.log(action.website);
+            return {
+                ...state,
+                websiteRecipe: action.website,
+                websiteError: action.error
             };
         default:
             return state;

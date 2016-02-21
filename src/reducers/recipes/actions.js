@@ -67,3 +67,29 @@ function viewRecipeComplete(error, recipe) {
         error: error
     };
 }
+
+export function extractWebsite(uri) {
+    return dispatch => {
+        dispatch(startLoading());
+
+        fetch('https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/extract?forceExtraction=false&url=' + encodeURIComponent(uri), {
+            headers: {
+                'X-Mashape-Key': API_KEY
+            }
+        }).then((response) => {
+            return response.json();
+        }).then((json) => {
+            dispatch(extractWebsiteComplete(null, json));
+        }).catch((err) => {
+            dispatch(extractWebsiteComplete(err, null));
+        });
+    }
+}
+
+function extractWebsiteComplete(error, website) {
+    return {
+        type: types.EXTRACTWEBSITE,
+        website: website,
+        error: error
+    };
+}
