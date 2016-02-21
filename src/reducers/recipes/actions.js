@@ -13,6 +13,12 @@ function startLoading() {
     };
 }
 
+function startLoadingWebsite() {
+    return {
+        type: types.LOADINGWEBSITE
+    };
+}
+
 export function findRecipe(state) {
     return dispatch => {
         dispatch(startLoading());
@@ -73,7 +79,7 @@ function viewRecipeComplete(error, recipe) {
 
 export function extractWebsite(uri) {
     return dispatch => {
-        dispatch(startLoading());
+        dispatch(startLoadingWebsite());
 
         fetch('https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/extract?forceExtraction=false&url=' + encodeURIComponent(uri), {
             headers: {

@@ -114,8 +114,12 @@ class CreateListViewComponent extends React.Component {
       return (
         <div className="page">
           <div>
-          <span className="recipe-description">This weeks shopping list</span>
+          <span className="recipe-description">My shopping list</span><br/><br/>
           {stuff}
+
+          <br/>
+          <br/>
+          <span className="recipe-description">Now time to print it off and go shopping!</span>
           </div>
         </div>
       );
@@ -154,7 +158,7 @@ class CreateListViewComponent extends React.Component {
     		</div>
 
     		<div style={{margin: '5em 0', paddingBottom: '10em', height: '100%', overflow: 'auto'}}>
-    			<div><span className="recipe-description">This week we'll have..</span><br/><br/></div>
+    			<div><span className="recipe-description">Now what shall I pick..</span><br/><br/></div>
   			 {selected}
   		  </div>
 

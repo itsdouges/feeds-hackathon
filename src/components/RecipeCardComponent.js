@@ -10,8 +10,13 @@ const IMAGE_URI = 'https://spoonacular.com/recipeImages/';
 class RecipeCardComponent extends React.Component {
 
   render() {
-    const { recipe, noLink, hideImage } = this.props;
-    const image = hideImage ? <span /> : <img className="img-responsive" src={IMAGE_URI + recipe.image.replace(IMAGE_URI, '')} />;
+    const { recipe, noLink, isLocal, hideImage } = this.props;
+    let image = isLocal ? <img className="img-responsive" src={IMAGE_URI + 'default.png'} />
+        : <img className="img-responsive" src={IMAGE_URI + (recipe.image && recipe.image.replace(IMAGE_URI, ''))} />;
+
+    if (hideImage) {
+      image = undefined;
+    }
 
     const content = (
       <div>
@@ -22,9 +27,8 @@ class RecipeCardComponent extends React.Component {
       </div>
     );
 
-    const view = noLink ? content : 
-    (
-      <Link to={ '/recipe/view/' + recipe.id }>
+    const view = noLink ? content : (
+      <Link to={ '/recipe/view/' + (isLocal ? 'local' : 'online') + '/' + recipe.id }>
         {content}
       </Link>
     );
@@ -40,7 +44,10 @@ class RecipeCardComponent extends React.Component {
 RecipeCardComponent.displayName = 'RecipeCardComponent';
 
 RecipeCardComponent.propTypes = {
-  recipe: React.PropTypes.object
+  recipe: React.PropTypes.object,
+  isLocal: React.PropTypes.bool,
+  noLink: React.PropTypes.bool,
+  hideImage: React.PropTypes.bool
 };
 // RecipeCardComponent.defaultProps = {};
 
