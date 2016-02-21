@@ -2,76 +2,17 @@
 
 import React from 'react';
 import RecipeCard from './RecipeCardComponent';
+import { mapStateToProps, mapDispatchToProps } from '../reducers/mapping';
+import { connect } from 'react-redux';
+import { Link } from 'react-router';
 
 require('styles//CreateListView.less');
 
 class CreateListViewComponent extends React.Component {
 	constructor () {
-
 		super();
 		this.state = {
-			selected: {},
-			items: [{
-				id: 1,
-				title: 'chocolate pudding',
-				description: 'a cool meal to eat..'
-			},{
-				id: 2,
-				title: 'a cool cake',
-				description: 'a cool meal to feet..'
-			},{
-				id: 3,
-				title: 'mignon steak',
-				description: 'a cool meal to FORGET ABOUT IT!..'
-			},{
-				id: 4,
-				title: 'chocolate pudding',
-				description: 'a cool meal to eat..'
-			},{
-				id: 5,
-				title: 'a cool cake',
-				description: 'a cool meal to feet..'
-			},{
-				id: 6,
-				title: 'mignon steak',
-				description: 'a cool meal to FORGET ABOUT IT!..'
-			},{
-				id: 7,
-				title: 'chocolate pudding',
-				description: 'a cool meal to eat..'
-			},{
-				id: 8,
-				title: 'a cool cake',
-				description: 'a cool meal to feet..'
-			},{
-				id: 9,
-				title: 'mignon steak',
-				description: 'a cool meal to FORGET ABOUT IT!..'
-			},{
-				id: 10,
-				title: 'chocolate pudding',
-				description: 'a cool meal to eat..'
-			},{
-				id: 11,
-				title: 'a cool cake',
-				description: 'a cool meal to feet..'
-			},{
-				id: 12,
-				title: 'hmm ahh..',
-				description: 'a cool meal to FORGET ABOUT IT!..'
-			},{
-				id: 13,
-				title: 'nothing really :)',
-				description: 'a cool meal to eat..'
-			},{
-				id: 14,
-				title: 'another sandwhich',
-				description: 'a cool meal to feet..'
-			},{
-				id: 15,
-				title: 'a sandwhich',
-				description: 'a cool meal to FORGET ABOUT IT!..'
-			}]
+			selected: {}
 		};
 	}
 
@@ -100,8 +41,35 @@ class CreateListViewComponent extends React.Component {
 		this.setState(state);
 	}
 
-	finish (){
-		console.log(this.state.selected);
+	finish () {
+		// console.log(this.state.selected);
+
+    const genIngredients = {};
+
+    for (const key in this.state.selected) {
+      const count = this.state.selected[key];
+      const id = key;
+
+      const recipe = this.props.state.recipe.localRecipes[id] || this.props.state.recipe.onlineRecipes[id];
+      const ingredients = recipe.extendedIngredients || recipe.ingredients;
+      // console.log(ingredients);
+
+      ingredients.forEach((ingredient) => {
+        if (!genIngredients[ingredient.name]) {
+          genIngredients[ingredient.name] = {
+            name: ingredient.name,
+            unit: ingredient.unit,
+            amount: ingredient.amount * count,
+          };
+        }
+      });
+    }
+
+    console.log();
+
+    this.setState({
+      generated: genIngredients
+    });
 	}
 
 	isSelected (id) {
@@ -109,18 +77,54 @@ class CreateListViewComponent extends React.Component {
 	}
 
   render() {
-  	const recipes = this.state.items && this.state.items.map((recipe, index) => {
-  		return (
-  			<div className={this.isSelected.call(this,recipe.id) ? 'selected' : ''} key={index} onClick={(e) => { e.preventDefault(); this.add.call(this, recipe.id); }} style={{cursor:'pointer'}}>
-  				<RecipeCard hideImage={true} recipe={recipe} />
-  			</div>
-		);
-  	});
+    console.log(this.props.state);
+
+    const items = {
+      ...this.props.state.recipe.localRecipes,
+      ...this.props.state.recipe.onlineRecipes
+    };
+
+    let recipes;
+
+    if (Object.keys(items).length > 0) {
+      recipes = [];
+
+      for (const key in items) {
+        const recipe = items[key];
+
+        recipes.push(
+          <div className={this.isSelected.call(this,recipe.id) ? 'selected' : ''} key={key} onClick={(e) => { e.preventDefault(); this.add.call(this, recipe.id); }} style={{cursor:'pointer'}}>
+            <RecipeCard hideImage={true} noLink={true} recipe={recipe} />
+          </div>
+        );
+      }
+    }
+
+    if (this.state.generated && Object.keys(this.state.generated).length > 0) {
+      const stuff = [];
+
+      for (const key in this.state.generated) {
+        const item = this.state.generated[key];
+
+        stuff.push(
+          <div key={key}><span className="recipe-description">{`${item.amount} ${item.unit} of ${item.name}`}</span></div>
+        );
+      }
+
+      return (
+        <div className="page">
+          <div>
+          <span className="recipe-description">This weeks shopping list</span>
+          {stuff}
+          </div>
+        </div>
+      );
+    }
+
+    const message = <span>Need more recipes? Why not <Link className="btn-link" to="/recipe/find">find</Link> or <Link className="btn-link" to="/recipe/create">create</Link> some :-)</span>;
 
   	if (!recipes) {
-  		return (
-  			<span>loading..</span>
-		);
+  		return (<div className="page">{message}</div>);
   	}
 
   	let selected;
@@ -131,13 +135,11 @@ class CreateListViewComponent extends React.Component {
   		}
 
   		const count = this.state.selected[key];
-  		const recipe = this.state.items.filter(item => {
-  			return item.id == key;
-  		})[0];
+  		const recipe = items[key];
 
   		selected.push(
   			<div key={key}>
-  				<span className="recipe-description">{recipe.title} x{count}</span>
+  				<span className="recipe-description">{recipe.title} x {count}</span>
   				<a className="icon-button" onClick={this.remove.bind(this, key)}><i className="fa fa-times"></i></a>
   			</div>
 		);
@@ -147,16 +149,16 @@ class CreateListViewComponent extends React.Component {
 
     return (
       <div className="page">
-  		<div style={{background: 'blue', display: 'flex', overflow: 'auto', alignItems: 'center', position: 'fixed', bottom: '0', left: '0', right: '0' }}>
-  			{recipes}
-  		</div>
+    		<div style={{background: 'blue', display: 'flex', overflow: 'auto', alignItems: 'center', position: 'fixed', bottom: '0', left: '0', right: '0' }}>
+          {recipes}
+    		</div>
 
-  		<div style={{margin: '5em 0', height: '90%', overflow: 'auto'}}>
-  			<div><span className="recipe-description">This week we'll have..</span><br/><br/></div>
-			{selected}
-		</div>
+    		<div style={{margin: '5em 0', paddingBottom: '10em', height: '100%', overflow: 'auto'}}>
+    			<div><span className="recipe-description">This week we'll have..</span><br/><br/></div>
+  			 {selected}
+  		  </div>
 
-		{finish}
+  		  {finish}
       </div>
     );
   }
@@ -168,4 +170,4 @@ CreateListViewComponent.displayName = 'CreateListViewComponent';
 // CreateListViewComponent.propTypes = {};
 // CreateListViewComponent.defaultProps = {};
 
-export default CreateListViewComponent;
+export default connect(mapStateToProps, mapDispatchToProps)(CreateListViewComponent);

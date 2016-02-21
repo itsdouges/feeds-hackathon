@@ -1,6 +1,7 @@
 'use strict';
 
 import React from 'react';
+import { Link } from 'react-router';
 
 import '../styles/MyListsView.less';
 
@@ -11,7 +12,7 @@ class MyListsViewComponent extends React.Component {
       	<div>
 	        list of shopping lists
 	        <br />
-	        <a href="/lists/create">create list</a>
+	        <Link className="btn-link" to="/lists/create">Create</Link> 
         </div>
       </div>
     );

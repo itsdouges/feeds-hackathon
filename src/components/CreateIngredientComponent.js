@@ -60,10 +60,14 @@ class CreateIngredientComponent extends React.Component {
 		this.refs.amount.focus();
 	}
 
+  componentDidMount () {
+    this.refs.amount && this.refs.amount.focus();
+  }
+
   render() {
   	const form = (
 		<form>
-  			<input className="recipe-description textbox small" ref="amount" type="text" placeholder="250" /> 
+  			<input autofocus className="recipe-description textbox small" ref="amount" type="text" placeholder="250" /> 
   			<input className="recipe-description textbox small" ref="unit" type="text" placeholder="grams" /> 
   			<span className="recipe-description"> of </span>
   			<input className="recipe-description textbox" autoFocus ref="name" type="text" placeholder="Rib Eye Steak" />

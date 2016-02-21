@@ -10,17 +10,28 @@ const IMAGE_URI = 'https://spoonacular.com/recipeImages/';
 class RecipeCardComponent extends React.Component {
 
   render() {
-    const { recipe } = this.props;
-    const image = this.props.hideImage ? <span /> : <img className="img-responsive" src={IMAGE_URI + recipe.image.replace(IMAGE_URI, '')} />;
+    const { recipe, noLink, hideImage } = this.props;
+    const image = hideImage ? <span /> : <img className="img-responsive" src={IMAGE_URI + recipe.image.replace(IMAGE_URI, '')} />;
+
+    const content = (
+      <div>
+        {image}
+        <div className="title">
+          { recipe.title }
+        </div>
+      </div>
+    );
+
+    const view = noLink ? content : 
+    (
+      <Link to={ '/recipe/view/' + recipe.id }>
+        {content}
+      </Link>
+    );
 
     return (
       <div className="recipecard-component">
-        <Link to={ '/recipe/view/' + recipe.id }>
-          {image}
-          <div className="title">
-            { recipe.title }
-          </div>
-        </Link>
+        {view}
       </div>
     );
   }
