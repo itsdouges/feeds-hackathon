@@ -108,8 +108,20 @@ export function setOnlineRecipeListeners() {
             recipeRef.on('child_removed', (snapshot) => {
                 dispatch(setOnlineRecipeRemoveComplete(snapshot));
             });
+
+            loginRef.onAuth((authData) => {
+                if (!authData) {
+                    dispatch(reset());
+                }
+            })
         }
     }
+}
+
+function reset() {
+    return {
+        type: types.RESET
+    };
 }
 
 function setOnlineRecipeAddComplete(snapshot) {

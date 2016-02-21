@@ -16,7 +16,7 @@ class LayoutComponent extends React.Component {
 
   componentDidMount() {
     this.props.checkAuth();
-    this.props.setOnlineRecipeListeners();
+    this.props.setAuthListeners(this.props.setOnlineRecipeListeners);
   }
 
   render() {

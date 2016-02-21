@@ -56,6 +56,12 @@ export default function recipe(state = initialState, action = {}) {
                 ...state,
                 onlineRecipes: onlineRecipes
             };
+        case types.RESET:
+            return {
+                ...state,
+                onlineRecipes: [],
+                localRecipes: []
+            };
         default:
             return state;
     }

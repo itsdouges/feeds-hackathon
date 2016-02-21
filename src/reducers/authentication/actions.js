@@ -5,6 +5,19 @@ import Firebase from 'firebase';
 
 const loginRef = new Firebase('https://feedshackathon.firebaseio.com');
 
+export function setAuthListeners(callback) {
+    return dispatch => {
+        loginRef.onAuth((authData) => {
+            if (authData) {
+                callback();
+                dispatch(loginComplete(null, authData));
+            } else {
+                dispatch(loginComplete());
+            }
+        });
+    }
+}
+
 export function checkAuth() {
     return dispatch => {
         let authData = loginRef.getAuth();
