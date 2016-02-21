@@ -8,10 +8,14 @@ const initialState = {
     recipeError: null,
     websiteRecipe: null,
     websiteError: null,
-    loading: false
+    loading: false,
+    onlineRecipes: [],
+    localRecipes: []
 };
 
 export default function recipe(state = initialState, action = {}) {
+    let onlineRecipes = state.onlineRecipes;
+
     switch (action.type) {
         case types.LOADING:
             return {
@@ -39,6 +43,18 @@ export default function recipe(state = initialState, action = {}) {
                 ...state,
                 websiteRecipe: action.website,
                 websiteError: action.error
+            };
+        case types.ONLINERECIPEADDED:
+            onlineRecipes[action.key] = action.value;
+            return {
+                ...state,
+                onlineRecipes: onlineRecipes
+            };
+        case types.ONLINERECIPEREMOVED:
+            delete onlineRecipes[action.key];
+            return {
+                ...state,
+                onlineRecipes: onlineRecipes
             };
         default:
             return state;

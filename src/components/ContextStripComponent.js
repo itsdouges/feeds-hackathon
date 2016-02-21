@@ -25,9 +25,6 @@ class ContextStripComponent extends React.Component {
   }
 
   getLoggedOutContext() {
-    const { state } = this.props;
-    const auth = state.authentication;
-
     return (
         <div className="profile-context">
           <i className="img-responsive profile-image fa fa-user" />

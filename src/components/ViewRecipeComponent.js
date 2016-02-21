@@ -39,12 +39,16 @@ class ViewRecipeComponent extends React.Component {
     const { state } = this.props;
     const recipe = state.recipe.viewRecipe;
     const website = state.recipe.websiteRecipe;
+    const savedRecipe = recipe ? (state.recipe.onlineRecipes[recipe.id] ? true : false) : false;
 
     return recipe ?
       <div className="recipe">
         <div className="image-slider">
           <img src={ recipe.image } className="img-responsive" />
         </div>
+        <button className={ 'btn ' + (savedRecipe ?  'btn-danger' : 'btn-success') } onClick={ () => savedRecipe ? this.props.removeOnlineRecipe(recipe) : this.props.addOnlineRecipe(recipe) }>
+          <i className="fa fa-heart" />
+        </button>
         <h2>{ recipe.title }</h2>
         <RecipeBadge recipe={recipe} />
         <ul>

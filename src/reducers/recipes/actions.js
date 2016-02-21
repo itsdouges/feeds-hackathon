@@ -1,7 +1,10 @@
 'use strict';
 
 import * as types from './types';
+import Firebase from 'firebase';
 
+const endPoint = 'https://feedshackathon.firebaseio.com';
+const loginRef = new Firebase(endPoint);
 const API_KEY = 'oI8K3gw76zmshqdp5Ns7rPJDW2kHp19pwDljsnid6PkJte1yuo';
 
 function startLoading() {
@@ -91,5 +94,95 @@ function extractWebsiteComplete(error, website) {
         type: types.EXTRACTWEBSITE,
         website: website,
         error: error
+    };
+}
+
+export function setOnlineRecipeListeners() {
+    return dispatch => {
+        let authData = loginRef.getAuth();
+        if (authData) {
+            const recipeRef = new Firebase(endPoint + '/users/' + authData.uid + '/onlineRecipes/');
+            recipeRef.on('child_added', (snapshot) => {
+                dispatch(setOnlineRecipeAddComplete(snapshot));
+            });
+            recipeRef.on('child_removed', (snapshot) => {
+                dispatch(setOnlineRecipeRemoveComplete(snapshot));
+            });
+        }
+    }
+}
+
+function setOnlineRecipeAddComplete(snapshot) {
+    return {
+        type: types.ONLINERECIPEADDED,
+        key: snapshot.key(),
+        value: snapshot.val()
+    };
+}
+
+function setOnlineRecipeRemoveComplete(snapshot) {
+    return {
+        type: types.ONLINERECIPEREMOVED,
+        key: snapshot.key(),
+        value: snapshot.val()
+    };
+}
+
+export function addOnlineRecipe(recipe) {
+    return dispatch => {
+        let authData = loginRef.getAuth();
+        if (authData) {
+            const recipeRef = new Firebase(endPoint + '/users/' + authData.uid + '/onlineRecipes/' + recipe.id);
+            recipeRef.set(recipe);
+            dispatch(addOnlineRecipeComplete());
+        } else {
+            dispatch(addOnlineRecipeComplete());
+        }
+    }
+}
+
+function addOnlineRecipeComplete() {
+    console.log('added');
+    return {
+        type: types.ADDONLINERECIPE
+    };
+}
+
+export function removeOnlineRecipe(recipe) {
+    return dispatch => {
+        let authData = loginRef.getAuth();
+        if (authData) {
+            const recipeRef = new Firebase(endPoint + '/users/' + authData.uid + '/onlineRecipes/' + recipe.id);
+            recipeRef.remove();
+            dispatch(removeOnlineRecipeComplete());
+        } else {
+            dispatch(removeOnlineRecipeComplete());
+        }
+    }
+}
+
+function removeOnlineRecipeComplete() {
+    console.log('removed');
+    return {
+        type: types.REMOVEONLINERECIPE
+    };
+}
+
+export function addLocalRecipe(recipe) {
+    return dispatch => {
+        let authData = loginRef.getAuth();
+        if (authData) {
+            const recipeRef = new Firebase(endPoint + '/users/' + authData.uid + '/localRecipes/');
+            recipeRef.push(recipe);
+            dispatch(addLocalRecipeComplete());
+        } else {
+            dispatch(addLocalRecipeComplete());
+        }
+    }
+}
+
+function addLocalRecipeComplete() {
+    return {
+        type: types.ADDLOCALRECIPE
     };
 }
