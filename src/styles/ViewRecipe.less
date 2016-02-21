@@ -1,8 +1,10 @@
 @import 'Colors.less';
 
 .viewrecipe-component {
-  background-color: @brandSecondary;
-  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 
   .image-slider {
     height: 20em;
@@ -13,7 +15,8 @@
   }
 
   .recipe {
-
+    background-color: @brandSecondary;
+    padding: 0 2em 2em 2em;
     ul {
       padding: 1em 0;
       list-style: none;

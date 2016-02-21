@@ -15,7 +15,7 @@ export default {
         italian: 'italian',
         mexican: 'mexican',
         spanish: 'spanish',
-        middleEastern: 'middle eastern',
+        'middle+eastern': 'middle eastern',
         jewish: 'jewish',
         american: 'american',
         cajun: 'cajun',
@@ -23,20 +23,20 @@ export default {
         greek: 'greek',
         german: 'german',
         nordic: 'nordic',
-        easternEuropean: 'eastern european',
+        'eastern+european': 'eastern european',
         caribbean: 'caribbean',
-        latinAmerican: 'latin american'
+        'latin+american': 'latin american'
     },
     diets : {
         pescetarian: 'pescetarian',
-        lactoVegetarian: 'lacto vegetarian',
-        ovoVegetarian: 'ovo vegetarian',
+        'lacto+vegetarian': 'lacto vegetarian',
+        'ovo+vegetarian': 'ovo vegetarian',
         vegan: 'vegan',
         vegetarian: 'vegetarian'
     },
     types : {
-        mainCourse: 'main course',
-        sideDish: 'side dish',
+        'main+course': 'main course',
+        'side+dish': 'side dish',
         dessert: 'dessert',
         appetizer: 'appetizer',
         salad: 'salad',

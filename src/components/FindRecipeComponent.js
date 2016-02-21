@@ -85,30 +85,46 @@ class FindRecipeComponent extends React.Component {
     this.setState({form: value});
   }
 
+  componentDidUpdate(nextProps) {
+    if ((this.props.state.recipe.results !== nextProps.state.recipe.results) && this._results) {
+      this._results.scrollIntoView(true);
+    }
+  }
+
   render() {
     const { state } = this.props;
 
     return (
       <div className="findrecipe-component">
-        <div className="hero-icon">
-          <i className="fa fa-search" />
+        <div className="search">
+          <div className="hero-icon">
+            <i className="fa fa-search" />
+          </div>
+
+          <form>
+            <Form
+                type={FormSchema}
+                value={this.state.form}
+                onChange={this.onChange.bind(this)}
+                options={FormOptions} />
+
+            {
+              state.recipe.loading ?
+                <button
+                  type="submit"
+                  disabled
+                  className="btn btn-block btn-default">Searching <i className="fa fa-refresh fa-spin" /></button>
+                    :
+                <button
+                  type="submit"
+                  onClick={this.search.bind(this)}
+                  className="btn btn-block btn-default">Search <i className="fa fa-search" /></button>
+              }
+          </form>
         </div>
 
-        <form>
-          <Form
-              type={FormSchema}
-              value={this.state.form}
-              onChange={this.onChange.bind(this)}
-              options={FormOptions} />
-
-          <button
-              type="submit"
-              onClick={this.search.bind(this)}
-              className="btn btn-block btn-default">Search</button>
-        </form>
-
-        <div className="results">
-          { state.recipe.loading ? <i className="fa fa-refresh fa-spin loading" /> : this.resultsView() }
+        <div className="results" ref={(c) => this._results = c}>
+          { this.resultsView() }
         </div>
       </div>
     );
