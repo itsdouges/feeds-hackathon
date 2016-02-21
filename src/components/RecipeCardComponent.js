@@ -10,11 +10,12 @@ class RecipeCardComponent extends React.Component {
 
   render() {
     const { recipe } = this.props;
+    const image = this.props.hideImage ? <span /> : <img className="img-responsive" src={IMAGE_URI + recipe.image} />;
 
     return (
       <div className="recipecard-component">
         <a href={ '/recipe/view/' + recipe.id }>
-          <img className="img-responsive" src={IMAGE_URI + recipe.image} />
+          {image}
           <div className="title">
             { recipe.title }
           </div>

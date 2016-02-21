@@ -12,8 +12,9 @@ class HomeComponent extends React.Component {
 
         <div className="home-actions">
         	<a href="/recipe/find">Find</a>
-        	<a href="/create">Create</a>
-        	<a href="/saved">Saved</a>
+        	<a href="/recipe/create">Create</a>
+        	<a href="/recipe/saved">My Recipes</a>
+          <a href="/lists">My Lists</a>
         </div>
       </div>
     );
