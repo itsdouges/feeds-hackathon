@@ -1,6 +1,7 @@
 'use strict';
 
 import React from 'react';
+import { Link } from 'react-router';
 
 import '../styles/RecipeCard.less';
 
@@ -14,12 +15,12 @@ class RecipeCardComponent extends React.Component {
 
     return (
       <div className="recipecard-component">
-        <a href={ '/recipe/view/' + recipe.id }>
+        <Link to={ '/recipe/view/' + recipe.id }>
           {image}
           <div className="title">
             { recipe.title }
           </div>
-        </a>
+        </Link>
       </div>
     );
   }

@@ -1,6 +1,7 @@
 import React from 'react';
 import { mapStateToProps, mapDispatchToProps } from '../../reducers/mapping';
 import { connect } from 'react-redux';
+import { Link } from 'react-router';
 import '../../styles/views/Home.less';
 
 class HomeComponent extends React.Component {
@@ -11,10 +12,10 @@ class HomeComponent extends React.Component {
         <h1 className="title-hero">feed</h1>
 
         <div className="home-actions">
-        	<a href="/recipe/find">Find</a>
-        	<a href="/recipe/create">Create</a>
-        	<a href="/recipe/saved">My Recipes</a>
-          <a href="/lists">My Lists</a>
+        	<Link to="/recipe/find">Find</Link>
+        	<Link to="/recipe/create">Create</Link>
+        	<Link to="/recipe/saved">My Recipes</Link>
+          <Link to="/lists">My Lists</Link>
         </div>
       </div>
     );
