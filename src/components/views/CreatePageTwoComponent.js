@@ -4,23 +4,13 @@ import React from 'react';
 import IngredientList from '../IngredientListComponent';
 
 class PageTwo extends React.Component {
-	constructor () {
-		super();
-		console.log(this.props);
+	constructor (props) {
+		super(props);
+
 		this.state = {
 			errors: {},
+			ingredients: props.data.ingredients || [],
 		};
-	}
-
-	done (e) {
-		e.preventDefault();
-		
-	    if (this.validate()) {
-	      this.props.save({
-	      	name: this.refs.name.value,
-	      	description: this.refs.description.value,
-	      });
-	    }
 	}
 
 	validate () {
@@ -28,15 +18,9 @@ class PageTwo extends React.Component {
 			errors: {},
 		};
 
-		const name = this.refs.name.value;
-		const description = this.refs.description.value;
-
-		if (!name) {
-			state.errors.name = 'required';
-		}
-
-		if (!description) {
-			state.errors.description = 'required';
+		const ingredients = this.state.ingredients;
+		if (!ingredients.length) {
+			state.errors.ingredients = 'required';
 		}
 
 		this.setState(state);
@@ -44,24 +28,31 @@ class PageTwo extends React.Component {
 		return Object.keys(state.errors).length === 0;
 	}
 
-	onChange () {
-		this.props.setValid(this.validate());
+	save () {
+
+	}
+
+	setIngredients (ingredients) {
+		this.setState({
+			...this.state,
+			ingredients,
+		});
+
+		this.props.setValid(!!ingredients.length);
+
+      this.props.save({
+      	ingredients: ingredients
+      });
 	}
 
   render() {
     return (
       <div className="page">
-        <form>
-        	<h2>ingredients</h2>
+      	<div>
+	    	<h2>ingredients</h2>
 
-        	<IngredientList />
-
-          <button
-          	style={{display:'none'}}
-              type="submit"
-              onClick={this.done.bind(this)}
-              className="btn btn-block btn-default">Hide Me</button>
-        </form>
+			<IngredientList defaultValue={this.state.ingredients} onChange={this.setIngredients.bind(this)} />
+		</div>
       </div>
     );
   }

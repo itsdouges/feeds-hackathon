@@ -13,13 +13,8 @@ class PageOne extends React.Component {
 
 	done (e) {
 		e.preventDefault();
-		
-	    if (this.validate()) {
-	      this.props.save({
-	      	name: this.refs.name.value,
-	      	description: this.refs.description.value,
-	      });
-	    }
+		this.save(true);
+		this.props.next();
 	}
 
 	validate () {
@@ -41,6 +36,17 @@ class PageOne extends React.Component {
 		this.setState(state);
 
 		return Object.keys(state.errors).length === 0;
+	}
+
+	save (validate) {
+		console.log ('hey broo');
+
+	    if (!validate || this.validate()) {
+	      this.props.save({
+	      	name: this.refs.name.value,
+	      	description: this.refs.description.value,
+	      }, true);
+	    }
 	}
 
 	onChange () {

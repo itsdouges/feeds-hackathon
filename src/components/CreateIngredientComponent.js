@@ -1,8 +1,7 @@
 'use strict';
 
 import React from 'react';
-
-require('styles//CreateIngredient.less');
+import ReactDOM from 'react-dom';
 
 class CreateIngredientComponent extends React.Component {
 	constructor () {
@@ -19,15 +18,45 @@ class CreateIngredientComponent extends React.Component {
 		});
 	}
 
+	add (e) {
+		e.preventDefault();
+
+		const ingredient = this.getIngredient();
+		if (ingredient) {
+			this.props.onAdd(ingredient);
+			this.reset();
+		}
+	}
+
+	getIngredient () {
+		const item = {
+			name: this.refs.name.value,
+			amount: this.refs.amount.value,
+			unit: this.refs.unit.value
+		};
+
+		if (item.name && item.amount && item.unit) {
+			return item;
+		}
+
+		return undefined;
+	}
+
+	reset () {
+		this.setState({
+			...this.state,
+			adding: false,
+		})
+	}
+
   render() {
   	const form = this.state.adding && (
-		<div>
-  			<input type="text" placeholder="Name" />
-  			<input type="text" placeholder="Description" />
-  			<input type="text" placeholder="Calories" />
-  			<input type="text" placeholder="Type" />
-  			<button>add!</button>
-  		</div>
+		<form>
+  			<input autoFocus ref="name" type="text" placeholder="Name" /><br/>
+  			<input ref="amount" type="text" placeholder="Amount" /><br/>
+  			<input ref="unit" type="text" placeholder="Unit" /><br/>
+  			<button onClick={this.add.bind(this)}>add!</button>
+  		</form>
 	);
 
 	const modeButton = this.state.adding ? 

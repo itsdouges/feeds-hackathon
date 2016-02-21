@@ -2,9 +2,10 @@
 
 import React from 'react';
 
-import PageOne from './CreatePageOneComponent';
-import PageTwo from './CreatePageTwoComponent';
-import PageThree from './CreatePageThreeComponent';
+import Description from './CreatePageOneComponent';
+import Ingredients from './CreatePageTwoComponent';
+import Steps from './CreatePageThreeComponent';
+
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 require('styles/views/Create.less');
@@ -29,13 +30,6 @@ class CreateComponent extends React.Component {
         };
     }
 
-    setPage (page) {
-        this.setState({
-            ...this.getState(),
-            current: page,
-        });
-    }
-
     canGoBack () {
         return this.state.current > 1;
     }
@@ -45,8 +39,12 @@ class CreateComponent extends React.Component {
     }
 
     next () {
-        // if current page valid, allow movement
-        
+        if (!this.canGoForward()) {
+            return;
+        }
+        console.log('next page awayyy!');
+        this.refs.page.save(true);
+
         const state = this.state;
 
         this.setState({
@@ -56,7 +54,10 @@ class CreateComponent extends React.Component {
     }
 
     back () {
-        // if current page valid, allow movement
+        if (!this.canGoBack()) {
+            return;
+        }
+        this.refs.page.save(false);
 
         const state = this.state;
 
@@ -66,9 +67,7 @@ class CreateComponent extends React.Component {
         });
     }
 
-    savePage (data) {
-        console.log(data);
-
+    savePage (data, progress) {
         const state = {
             ...this.state,
             
@@ -78,17 +77,16 @@ class CreateComponent extends React.Component {
 
         this.setState(state);
 
-        if (this.canGoForward()) {
-            this.next();
-        }
+        // if (progress && this.canGoForward()) {
+        //     this.next();
+        // }
 
-        
+        console.log('PAGE STATE', this.state);
     }
 
     setValid (valid) {
         const state = {
             ...this.state,
-            
         };
 
         state[state.current].valid = valid;
@@ -104,15 +102,15 @@ class CreateComponent extends React.Component {
 
     switch (this.state.current) {
         case 2:
-            page = <PageTwo data={this.state[2].data} key={2} setValid={this.setValid.bind(this)} save={this.savePage.bind(this)} />;
+            page = <Ingredients ref="page" next={this.next.bind(this)} data={this.state[2].data} key={2} setValid={this.setValid.bind(this)} save={this.savePage.bind(this)} />;
             break;
 
         case 3:
-            page = <PageThree data={this.state[3].data} key={3} setValid={this.setValid.bind(this)} save={this.savePage.bind(this)} />;
+            page = <Steps ref="page" next={this.next.bind(this)} data={this.state[3].data} key={3} setValid={this.setValid.bind(this)} save={this.savePage.bind(this)} />;
             break;
 
         default:
-            page = <PageOne data={this.state[1].data} key={1} setValid={this.setValid.bind(this)} save={this.savePage.bind(this)} />;
+            page = <Description ref="page" next={this.next.bind(this)} data={this.state[1].data} key={1} setValid={this.setValid.bind(this)} save={this.savePage.bind(this)} />;
             break;
     }
 

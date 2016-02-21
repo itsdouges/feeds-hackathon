@@ -26,6 +26,10 @@ class PageThree extends React.Component {
 		this.props.setValid(false);
 	}
 
+	save () {
+		
+	}
+
   render() {
   	console.log(this.props);
 
