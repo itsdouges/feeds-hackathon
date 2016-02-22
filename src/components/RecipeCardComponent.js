@@ -11,9 +11,9 @@ class RecipeCardComponent extends React.Component {
 
   render() {
     const { recipe, noLink, isLocal, hideImage } = this.props;
-    const style = hideImage ? {
+    const style = {
       height: '10em'
-    } : {};
+    };
 
     let image = isLocal ? <img style={style} className="img-responsive" src={IMAGE_URI + 'default.png'} />
         : <img style={style} className="img-responsive" src={IMAGE_URI + (recipe.image && recipe.image.replace(IMAGE_URI, ''))} />;

@@ -94,7 +94,7 @@ class CreateListViewComponent extends React.Component {
         const recipe = items[key];
 
         recipes.push(
-          <div className={this.isSelected.call(this,recipe.id) ? 'selected' : ''} key={key} onClick={(e) => { e.preventDefault(); this.add.call(this, recipe.id); }} style={{cursor:'pointer'}}>
+          <div className={this.isSelected.call(this,recipe.id) ? 'selected' : ''} key={key} onClick={(e) => { e.preventDefault(); this.add.call(this, recipe.id); }} style={{cursor:'pointer', margin: '0 0.5em'}}>
             <RecipeCard hideImage={true} isLocal={!recipe.image} noLink={true} recipe={recipe} />
           </div>
         );
@@ -184,13 +184,12 @@ class CreateListViewComponent extends React.Component {
       		<div className="page">
       			<div>
               <span className="recipe-description">Let's make your <span className="feed">feed</span> list for the week!</span><br/><br/>
-            
-      			 {selected}
-             {finish}
+        			 {selected}
+               {finish}
             </div>
     		  </div>
           </div>
-       <div className="no-shrink" style={{background: '#388E3C', display: 'flex', overflowX: 'auto', overflowY: 'hidden', alignItems: 'flex-start', height: '22%', width: '100%' }}>
+       <div className="no-shrink" style={{background: '', display: 'flex', overflowX: 'auto', overflowY: 'hidden', alignItems: 'flex-start', height: '22%', width: '100%' }}>
           {recipes}
         </div>
       </div>
