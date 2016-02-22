@@ -7,16 +7,16 @@
 // import TestUtils from 'react-addons-test-utils';
 import createComponent from 'helpers/shallowRenderHelper';
 
-import MyListsViewComponentComponent from 'components/MyListsViewComponent.js';
+import CreateListViewComponent from 'components/views/CreateListViewComponent.js';
 
-describe('MyListsViewComponent', () => {
+describe('CreateListViewComponent', () => {
   let component;
 
   beforeEach(() => {
-    component = createComponent(MyListsViewComponentComponent);
+    component = createComponent(CreateListViewComponent);
   });
 
   it('should have its component name as default className', () => {
-    expect(component.props.className).to.equal('mylistsview-component');
+    expect(component.props.className).to.equal('createlistview-component');
   });
 });
