@@ -1,6 +1,7 @@
 # feeds
 
 Demo: http://158.85.177.246/
+Developed on and tested with: Google Chrome
 
 A Productivity Tool submission for the 2016 hack.summit() Virtual Hackathon, presented by Pluralsight and powered by Koding & IBM.
 
