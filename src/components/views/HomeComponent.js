@@ -3,12 +3,15 @@ import { mapStateToProps, mapDispatchToProps } from '../../reducers/mapping';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
 import '../../styles/views/Home.less';
+import Logo from '../../images/cookbook.png';
 
 class HomeComponent extends React.Component {
   render() {
     return (
       <div className="home">
-      	<div className="hero-icon"></div>
+      	<div className="hero-icon">
+          <img src={Logo} className="img-responsive" />
+        </div>
         <h1 className="title-hero">feed</h1>
 
         <div className="home-actions" style={{textAlign:'center', fontSize: '1.2em'}}>
