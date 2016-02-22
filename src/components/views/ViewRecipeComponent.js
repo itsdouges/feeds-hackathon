@@ -42,7 +42,7 @@ class ViewRecipeComponent extends React.Component {
     const website = state.recipe.websiteRecipe;
     const savedRecipe = recipe ? (state.recipe.onlineRecipes[recipe.id] ? true : false) : false;
 
-    const buttonText = savedRecipe ? <span /> : <span style={{color: 'white',fontSize: '1.2em', margin: '0.5em 1em 0.5em 0.5em'}}>{savedRecipe ? '' : 'Like it? Save it!'}</span>;
+    const buttonText = savedRecipe ? null : <span style={{color: 'white',fontSize: '1.2em', margin: '0.5em 1em 0.5em 0.5em'}}>Like it? Save it!</span>;
 
     return recipe ?
       <div className="recipe">

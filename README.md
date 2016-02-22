@@ -20,8 +20,8 @@ Feeds was created with the following front-end technologies:
 - Yeoman with React-Webpack-Generator (as boilerplate)
 
 Making use of the following API's
-- Spoonacular (https://spoonacular.com/food-api)
-- Firebase (user storage)
+- [Spoonacular](https://market.mashape.com/spoonacular/recipe-food-nutrition)
+- [Firebase] (https://www.firebase.com/)
 
 ## Team Banana
 
