@@ -14,7 +14,6 @@ import FindRecipe from '../views/FindRecipeComponent';
 import SavedRecipes from '../views/SavedRecipesComponent';
 import ViewRecipe from '../views/ViewRecipeComponent';
 import ViewLocalRecipe from '../views/ViewLocalRecipeComponent';
-import MyListsView from '../MyListsViewComponent';
 import CreateListView from '../views/CreateListViewComponent';
 
 const createStoreWithMiddleware = applyMiddleware(thunk)(createStore);
