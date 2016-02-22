@@ -41,6 +41,15 @@ class CreateListViewComponent extends React.Component {
 		this.setState(state);
 	}
 
+  goBack (e) {
+    e.preventDefault();
+    console.log('hey');
+    const state = this.state;
+    delete state.generated;
+
+    this.setState(state);
+  }
+
 	finish () {
 		// console.log(this.state.selected);
 
@@ -68,8 +77,8 @@ class CreateListViewComponent extends React.Component {
     console.log();
 
     this.setState({
+      ...this.state,
       generated: genIngredients,
-      genSelected: this.state.selected,
     });
 	}
 
@@ -114,12 +123,12 @@ class CreateListViewComponent extends React.Component {
 
     let genSelected;
 
-    for (const key in this.state.genSelected) {
+    for (const key in this.state.selected) {
       if (!genSelected) {
         genSelected = [];
       }
 
-      const count = this.state.genSelected[key];
+      const count = this.state.selected[key];
       const recipe = items[key];
 
       genSelected.push(
@@ -129,11 +138,13 @@ class CreateListViewComponent extends React.Component {
     );
     }
 
-
       return (
         <div className="page">
           <div>
+            <div>
+            <a href="" title="Back" style={{fontSize: '2em', margin: '1em 1em 1.1em 0'}} onClick={this.goBack.bind(this)}><i className="fa fa-arrow-left"></i></a>
             <span className="recipe-description">My <span style={{fontSize:'1.5em'}} className="feed">feed</span> list</span>
+            </div>
 
             <br/><span className="recipe-description"><hr/></span><br/>
 
