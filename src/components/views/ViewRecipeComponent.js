@@ -3,6 +3,7 @@
 import React from 'react';
 import { mapStateToProps, mapDispatchToProps } from '../../reducers/mapping';
 import { connect } from 'react-redux';
+import { hashHistory } from 'react-router';
 
 import RecipeBadge from './../RecipeBadgeComponent';
 import Instructions from './../InstructionsComponent';
@@ -46,7 +47,11 @@ class ViewRecipeComponent extends React.Component {
     return recipe ?
       <div className="recipe">
         <div className="image-slider" style={{ position:'relative', background: 'url(\'' + recipe.image + '\')', backgroundPosition: 'center center', backgroundSize: 'cover'}}>
-           <div style={{position: 'absolute',bottom:'0',right:'0', padding: '1em', backgroundColor: 'rgba(0, 0, 0, 0.3)'}}>
+          <div style={{position: 'absolute',top:'0',left:'0', padding: '1em', backgroundColor: 'rgba(0, 0, 0, 0.2)'}}>
+            <a onClick={(e) => {e.preventDefault(); hashHistory.goBack(); }} style={{fontSize: '2em', margin: '1em 0.5em'}} href=""><i className="fa fa-arrow-left"></i></a>
+          </div>
+
+           <div style={{position: 'absolute',bottom:'0',right:'0', padding: '1em', backgroundColor: 'rgba(0, 0, 0, 0.2)'}}>
               {buttonText}
               <button title={savedRecipe ? 'Loved' : 'Like it? Save it!'} className={ 'btn ' + (savedRecipe ?  'btn-danger' : 'btn-success') } onClick={ () => savedRecipe ? this.props.removeOnlineRecipe(recipe) : this.props.addOnlineRecipe(recipe) }>
                 <i className="fa fa-heart" />

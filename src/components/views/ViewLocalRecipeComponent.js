@@ -49,7 +49,11 @@ class ViewLocalRecipeComponent extends React.Component {
     return recipe ?
         <div className="recipe">
           <div className="image-slider" style={{ position:'relative', background: 'url(\'https://spoonacular.com/recipeImages/default.png\')', backgroundPosition: 'center center', backgroundSize: 'cover'}}>
-           <div style={{position: 'absolute',bottom:'0',right:'0', padding: '1em', backgroundColor: 'rgba(0, 0, 0, 0.3)'}}>
+            <div style={{position: 'absolute',top:'0',left:'0', padding: '1em', backgroundColor: 'rgba(0, 0, 0, 0.2)'}}>
+              <a onClick={(e) => {e.preventDefault(); hashHistory.goBack(); }} style={{fontSize: '2em', margin: '1em 0.5em'}} href=""><i className="fa fa-arrow-left"></i></a>
+            </div>
+
+           <div style={{position: 'absolute',bottom:'0',right:'0', padding: '1em', backgroundColor: 'rgba(0, 0, 0, 0.2)'}}>
               <button title="delete" className={ 'btn ' + (savedRecipe ?  'btn-danger' : 'btn-success') } onClick={ () => this.removeRecipe(recipe) }>
                 <i className="fa fa-times" />
               </button>
