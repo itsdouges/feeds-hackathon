@@ -117,6 +117,17 @@ export default function recipe(state = initialState, action = {}) {
                     ...state
                 };
             }
+        case types.REMOVELOCALRECIPE:
+            if (action.localStorageItems) {
+                return {
+                    ...state,
+                    localRecipes: action.localStorageItems
+                };
+            } else {
+                return {
+                    ...state
+                };
+            }
         default:
             return state;
     }

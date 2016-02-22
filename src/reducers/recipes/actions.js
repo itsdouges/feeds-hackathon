@@ -106,6 +106,12 @@ function extractWebsiteComplete(error, website) {
 export function setRecipeListeners() {
     return dispatch => {
         let authData = loginRef.getAuth();
+        loginRef.onAuth((authData) => {
+            console.log('resetting');
+            dispatch(reset());
+            fetchLocalStorage(dispatch, authData);
+        });
+
         if (authData) {
             const recipeRef = new Firebase(endPoint + '/users/' + authData.uid + '/onlineRecipes/');
             recipeRef.on('child_added', (snapshot) => {
@@ -125,33 +131,32 @@ export function setRecipeListeners() {
                 dispatch(setLocalRecipeRemoveComplete(snapshot.key(), snapshot.val()));
             });
 
-            loginRef.onAuth((authData) => {
-                if (!authData) {
-                    dispatch(reset());
-                }
-            });
         } else {
-            console.log('checking local storage');
-            if (typeof(Storage) !== 'undefined') {
-                //localStorage.removeItem('onlineRecipes');
-                //localStorage.removeItem('localRecipes');
+            fetchLocalStorage(dispatch);
+        }
+    }
+}
 
-                let onlineRecipes = JSON.parse(localStorage.getItem('onlineRecipes'));
-                if (onlineRecipes) {
-                    console.log(onlineRecipes);
-                    Object.keys(onlineRecipes).forEach((key) => {
-                        dispatch(setOnlineRecipeAddComplete(key, onlineRecipes[key]));
-                    });
-                }
+function fetchLocalStorage(dispatch, authData) {
+    console.log('checking local storage');
+    if (!authData && typeof(Storage) !== 'undefined') {
+        //localStorage.removeItem('onlineRecipes');
+        //localStorage.removeItem('localRecipes');
 
-                let localRecipes = JSON.parse(localStorage.getItem('localRecipes'));
-                if (localRecipes) {
-                    console.log(localRecipes);
-                    Object.keys(localRecipes).forEach((key) => {
-                        dispatch(setLocalRecipeAddComplete(key, localRecipes[key]));
-                    });
-                }
-            }
+        let onlineRecipes = JSON.parse(localStorage.getItem('onlineRecipes'));
+        if (onlineRecipes) {
+            console.log(onlineRecipes);
+            Object.keys(onlineRecipes).forEach((key) => {
+                dispatch(setOnlineRecipeAddComplete(key, onlineRecipes[key]));
+            });
+        }
+
+        let localRecipes = JSON.parse(localStorage.getItem('localRecipes'));
+        if (localRecipes) {
+            console.log(localRecipes);
+            Object.keys(localRecipes).forEach((key) => {
+                dispatch(setLocalRecipeAddComplete(key, localRecipes[key]));
+            });
         }
     }
 }
@@ -271,6 +276,8 @@ export function addLocalRecipe(recipe) {
                 let recipes = localStorage.getItem('localRecipes');
                 if (recipes) {
                     let json = JSON.parse(recipes);
+                    recipe.id = Object.keys(json).length;
+                    console.log(recipe);
                     json[recipe.id] = recipe;
                     strRec = json;
                 } else {
@@ -286,6 +293,36 @@ export function addLocalRecipe(recipe) {
 function addLocalRecipeComplete(localStorageItems) {
     return {
         type: types.ADDLOCALRECIPE,
+        localStorageItems: localStorageItems
+    };
+}
+
+export function removeLocalRecipe(recipe) {
+    return dispatch => {
+        let authData = loginRef.getAuth();
+        if (authData) {
+            const recipeRef = new Firebase(endPoint + '/users/' + authData.uid + '/localRecipes/' + recipe.id);
+            recipeRef.remove();
+            dispatch(removeLocalRecipeComplete());
+        } else {
+            if (typeof(Storage) !== 'undefined') {
+                let strRec = {};
+                let recipes = localStorage.getItem('localRecipes');
+                if (recipes) {
+                    let json = JSON.parse(recipes);
+                    delete json[recipe.id];
+                    strRec = json;
+                }
+                localStorage.setItem('localRecipes', JSON.stringify(strRec));
+                dispatch(removeLocalRecipeComplete(strRec));
+            }
+        }
+    }
+}
+
+function removeLocalRecipeComplete(localStorageItems) {
+    return {
+        type: types.REMOVELOCALRECIPE,
         localStorageItems: localStorageItems
     };
 }

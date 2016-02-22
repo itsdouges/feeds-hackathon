@@ -3,6 +3,7 @@
 import React from 'react';
 import { mapStateToProps, mapDispatchToProps } from '../../reducers/mapping';
 import { connect } from 'react-redux';
+import { browserHistory } from 'react-router';
 
 import RecipeBadge from './../RecipeBadgeComponent';
 import Instructions from './../InstructionsComponent';
@@ -17,6 +18,8 @@ class ViewLocalRecipeComponent extends React.Component {
     this.state = {
       recipe: null
     };
+
+    this.removeRecipe = this.removeRecipe.bind(this);
   }
 
   componentDidMount() {
@@ -33,9 +36,15 @@ class ViewLocalRecipeComponent extends React.Component {
     }
   }
 
+  removeRecipe(recipe) {
+    this.props.removeLocalRecipe(recipe);
+    browserHistory.push('/recipe/saved');
+  }
+
   getRecipeView() {
     const { state } = this.props;
     const recipe = this.state.recipe;
+    const savedRecipe = recipe ? (state.recipe.localRecipes[recipe.id] ? true : false) : false;
 
     return recipe ?
         <div className="recipe">
@@ -43,6 +52,9 @@ class ViewLocalRecipeComponent extends React.Component {
 
           <div className="recipe-info">
             <div className="text-center">
+              <button className={ 'btn ' + (savedRecipe ?  'btn-danger' : 'btn-success') } onClick={ () => savedRecipe ? this.removeRecipe(recipe) : this.props.addLocalRecipe(recipe) }>
+                <i className="fa fa-heart" />
+              </button>
               <h2>{ recipe.title }</h2>
               It's a "<i>{recipe.description}</i>"!
             </div>
