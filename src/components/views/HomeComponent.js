@@ -11,11 +11,11 @@ class HomeComponent extends React.Component {
       	<div className="hero-icon"></div>
         <h1 className="title-hero">feed</h1>
 
-        <div className="home-actions">
-        	<Link to="/recipe/find">Find</Link>
-        	<Link to="/recipe/create">Create</Link>
-        	<Link to="/recipe/saved">My Recipes</Link>
-          <Link to="/create-shopping-list">Create a Shopping List</Link>
+        <div className="home-actions" style={{textAlign:'center', fontSize: '1.2em'}}>
+          <Link to="/recipe/create"><div><i className="fa fa-paper-plane-o"></i></div> Add Recipe</Link>
+        	<Link to="/recipe/find"><div><i className="fa fa-search"></i></div> Find Recipes</Link>
+        	<Link to="/recipe/saved"><div><i className="fa fa-heart-o"></i></div> My Recipes</Link>
+          <Link to="/create-shopping-list"><div><i className="fa fa-file-text-o"></i></div> Make a Shopping List</Link>
         </div>
       </div>
     );

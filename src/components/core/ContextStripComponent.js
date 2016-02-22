@@ -20,7 +20,7 @@ class ContextStripComponent extends React.Component {
     return (
       <div className="profile-context">
         <img src={auth.authData.google.profileImageURL} className="img-responsive profile-image" />
-        <button onClick={this.props.logout}>Logout</button>
+        <button className="link" style={{background: 'none', marginLeft: '0.3em', border: 'none', outline: 'none', fontSize: '1.3em'}} onClick={this.props.logout}>logout</button>
       </div>
     );
   }
@@ -28,8 +28,7 @@ class ContextStripComponent extends React.Component {
   getLoggedOutContext() {
     return (
         <div className="profile-context">
-          <i className="img-responsive profile-image fa fa-user" />
-          <button onClick={this.props.login}>Login</button>
+          <button className="link" style={{background: 'none', border: 'none', outline: 'none', fontSize: '1.3em'}} onClick={this.props.login}>login</button>
         </div>
     );
   }
@@ -41,7 +40,7 @@ class ContextStripComponent extends React.Component {
     return (
       <div className="context-strip">
         <div className="context-area left-context">
-          <Link className="btn btn-link" to="/">feed</Link>
+          <Link className="context-hero" to="/">feed</Link>
         </div>
 
         <div className="context-area right-context">
