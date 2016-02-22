@@ -39,20 +39,20 @@ class SavedRecipesComponent extends React.Component {
     const onlineRecipes = this.props.state.recipe.onlineRecipes;
 
     const exists = (Object.keys(localRecipes).length || Object.keys(onlineRecipes).length);
-    const message = !exists && <span className="recipe-description">Oh, you have no recipes.  Go <Link className="btn-link" to="/recipe/find">find</Link> and <Link className="btn-link" to="/recipe/create">create</Link> some :-)</span>;
+    const message = exists ? (
+      <span style={{fontSize: '2em', margin: '1em 0'}}>
+        Feel like leaving it to chance? Let us <a href="#" onClick={this.random}>pick a <span className="feed">feed</span> for you!</a>
+      </span>
+    ) : (
+      <span className="recipe-description">Oh, you have no recipes.  Go <Link className="btn-link" to="/recipe/find">find</Link> and <Link className="btn-link" to="/recipe/create">create</Link> some :-)</span>
+    );
 
     return (
       <div className="page">
         <div className="savedrecipes-component">
-          <div className="home-actions">
-            <a href="#" onClick={this.random}>
-              <i style={{marginRight:'0.25em'}} className="fa fa-random"></i> random <span className="feed">feed</span>
-            </a>
-          </div>
-
+          {message}
           <RecipeList recipes={localRecipes} isLocal />
           <RecipeList recipes={onlineRecipes} />
-          {message}
         </div>
       </div>
     );

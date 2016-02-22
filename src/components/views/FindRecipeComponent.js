@@ -88,6 +88,7 @@ class FindRecipeComponent extends React.Component {
       <div className="findrecipe-component">
         <div className="search">
           <form>
+            <h2>Find your next <span className="feed">feed</span></h2>
             <Form
                 type={FormSchema}
                 value={this.state.form}
