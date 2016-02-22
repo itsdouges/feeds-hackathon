@@ -73,11 +73,11 @@ class PageOne extends React.Component {
           	<br/>
           	<br/>
           	
-          	<span className="recipe-description">it's a </span> 
+          	<span className="recipe-description">it's </span>
 
           <input 
           	className="recipe-description textbox long"
-          	placeholder="steak with a twist.."
+          	placeholder="a steak with a twist.."
           	defaultValue={this.props.data.description} 
           	onChange={this.onChange.bind(this)} 
           	type="text" 
