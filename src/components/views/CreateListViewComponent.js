@@ -1,12 +1,12 @@
 'use strict';
 
 import React from 'react';
-import RecipeCard from './RecipeCardComponent';
-import { mapStateToProps, mapDispatchToProps } from '../reducers/mapping';
+import RecipeCard from './../RecipeCardComponent';
+import { mapStateToProps, mapDispatchToProps } from '../../reducers/mapping';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
 
-require('styles//CreateListView.less');
+import '../../styles/views/CreateListView.less';
 
 class CreateListViewComponent extends React.Component {
 	constructor () {
@@ -190,7 +190,7 @@ class CreateListViewComponent extends React.Component {
             </div>
     		  </div>
           </div>
-       <div className="no-shrink" style={{background: '#388E3C', display: 'flex', overflow: 'auto', alignItems: 'flex-start', height: '22%', width: '100%' }}>
+       <div className="no-shrink" style={{background: '#388E3C', display: 'flex', overflowX: 'auto', overflowY: 'hidden', alignItems: 'flex-start', height: '22%', width: '100%' }}>
           {recipes}
         </div>
       </div>

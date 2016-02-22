@@ -15,7 +15,7 @@ import SavedRecipes from '../views/SavedRecipesComponent';
 import ViewRecipe from '../views/ViewRecipeComponent';
 import ViewLocalRecipe from '../views/ViewLocalRecipeComponent';
 import MyListsView from '../MyListsViewComponent';
-import CreateListView from '../CreateListViewComponent';
+import CreateListView from '../views/CreateListViewComponent';
 
 const createStoreWithMiddleware = applyMiddleware(thunk)(createStore);
 const reducer = combineReducers(reducers);
@@ -33,8 +33,6 @@ class AppComponent extends React.Component {
             <Route path='/recipe/view/online/:recipeId' component={ViewRecipe} />
             <Route path='/recipe/view/local/:recipeId' component={ViewLocalRecipe} />
             <Route path='/recipe/saved' component={SavedRecipes} />
-
-            <Route path='/lists' component={MyListsView} />
             <Route path='/create-shopping-list' component={CreateListView} />
 
             <IndexRoute component={Home} />
