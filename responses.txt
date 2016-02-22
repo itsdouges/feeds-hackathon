@@ -20,4 +20,4 @@ Trello board for development: https://trello.com/b/cyZJkLBp/feeds-hackathon
 
 List the APIs, tools, open source libraries etc. that you used.*
 API's: https://market.mashape.com/spoonacular/recipe-food-nutrition, https://firebase.com
-Tools: NPM, Yeoman, React-Webpack-Generator, Webpack, React-Router, React.js, Redux.js, Redux-thunk, React-Redux, Tcomb-Form, SourceTree, Trello (https://trello.com/b/cyZJkLBp/feeds-hackathon)
+Tools: NPM, Yeoman, React-Webpack-Generator, Webpack, React-Router, React.js, Redux.js, Redux-thunk, React-Redux, Tcomb-Form, SourceTree, Trello (https://trello.com/b/cyZJkLBp/feeds-hackathon), FontAwesome, Bootstrap
