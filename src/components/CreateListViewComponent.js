@@ -143,10 +143,16 @@ class CreateListViewComponent extends React.Component {
       );
     }
 
-    const message = <span className="recipe-description">Need more recipes? Why not <Link className="btn-link" to="/recipe/find">find</Link> or <Link className="btn-link" to="/recipe/create">create</Link> some :-)</span>;
+    const message = <span className="recipe-description">No recipes? Go <Link className="btn-link" to="/recipe/find">find</Link> and <Link className="btn-link" to="/recipe/create">create</Link> some :-)</span>;
 
   	if (!recipes) {
-  		return (<div className="page">{message}</div>);
+  		return (
+      <div className="page">
+        <div style={{textAlign: 'center'}}>
+        <div><span className="recipe-description">Let's make your <span className="feed">feed</span> list for the week!</span><br/><br/></div>
+        {message}
+        </div>
+      </div>);
   	}
 
   	let selected;
@@ -174,7 +180,7 @@ class CreateListViewComponent extends React.Component {
         <div style={{height: '74%'}}>
       		<div className="page">
       			<div>
-              <span className="recipe-description">Let's find your <span className="feed">feed</span> for the week!</span><br/><br/>
+              <span className="recipe-description">Let's make your <span className="feed">feed</span> list for the week!</span><br/><br/>
             
       			 {selected}
              {finish}
