@@ -3,7 +3,7 @@
 import React from 'react';
 import { mapStateToProps, mapDispatchToProps } from '../../reducers/mapping';
 import { connect } from 'react-redux';
-import { browserHistory } from 'react-router';
+import { hashHistory } from 'react-router';
 
 import Description from './CreatePageOneComponent';
 import Ingredients from './CreatePageTwoComponent';
@@ -99,7 +99,7 @@ class CreateComponent extends React.Component {
             ...this.state[3].data
         });
 
-        browserHistory.push('/recipe/saved');
+        hashHistory.push('/recipe/saved');
     }
 
     setValid (valid) {

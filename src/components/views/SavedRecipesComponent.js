@@ -3,7 +3,7 @@
 import React from 'react';
 import { mapStateToProps, mapDispatchToProps } from '../../reducers/mapping';
 import { connect } from 'react-redux';
-import { Link, browserHistory } from 'react-router';
+import { Link, hashHistory } from 'react-router';
 import RecipeList from './../RecipeListComponent';
 
 import '../../styles/views/SavedRecipes.less';
@@ -28,9 +28,9 @@ class SavedRecipesComponent extends React.Component {
     let randomRecipeKey = Object.keys(allRecipes)[randomNumber];
 
     if (localRecipes[randomRecipeKey]) {
-      browserHistory.push('/recipe/view/local/' + randomRecipeKey);
+      hashHistory.push('/recipe/view/local/' + randomRecipeKey);
     } else if (onlineRecipes[randomRecipeKey]) {
-      browserHistory.push('/recipe/view/online/' + randomRecipeKey);
+      hashHistory.push('/recipe/view/online/' + randomRecipeKey);
     }
   }
 

@@ -2,7 +2,7 @@
 
 import React from 'react';
 
-require('styles//Instructions.less');
+import '../styles/Instructions.less';
 
 class InstructionsComponent extends React.Component {
 

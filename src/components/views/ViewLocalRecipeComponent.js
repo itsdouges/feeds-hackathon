@@ -3,7 +3,7 @@
 import React from 'react';
 import { mapStateToProps, mapDispatchToProps } from '../../reducers/mapping';
 import { connect } from 'react-redux';
-import { browserHistory } from 'react-router';
+import { hashHistory } from 'react-router';
 
 import RecipeBadge from './../RecipeBadgeComponent';
 import Instructions from './../InstructionsComponent';
@@ -38,7 +38,7 @@ class ViewLocalRecipeComponent extends React.Component {
 
   removeRecipe(recipe) {
     this.props.removeLocalRecipe(recipe);
-    browserHistory.push('/recipe/saved');
+    hashHistory.push('/recipe/saved');
   }
 
   getRecipeView() {
