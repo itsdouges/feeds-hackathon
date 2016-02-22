@@ -22,10 +22,12 @@ class SavedRecipesComponent extends React.Component {
     const message = !exists && <span className="recipe-description">Oh, you have no recipes.  Go <Link className="btn-link" to="/recipe/find">find</Link> and <Link className="btn-link" to="/recipe/create">create</Link> some :-)</span>;
 
     return (
-      <div className="savedrecipes-component page">
-        <RecipeList recipes={localRecipes} isLocal />
-        <RecipeList recipes={onlineRecipes} />
-        {message}
+      <div className="page">
+        <div className="savedrecipes-component">
+          <RecipeList recipes={localRecipes} isLocal />
+          <RecipeList recipes={onlineRecipes} />
+          {message}
+        </div>
       </div>
     );
   }
