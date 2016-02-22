@@ -68,7 +68,8 @@ class CreateListViewComponent extends React.Component {
     console.log();
 
     this.setState({
-      generated: genIngredients
+      generated: genIngredients,
+      genSelected: this.state.selected,
     });
 	}
 
@@ -111,15 +112,32 @@ class CreateListViewComponent extends React.Component {
         );
       }
 
+    let genSelected;
+
+    for (const key in this.state.genSelected) {
+      if (!genSelected) {
+        genSelected = [];
+      }
+
+      const count = this.state.genSelected[key];
+      const recipe = items[key];
+
+      genSelected.push(
+        <div key={key}>
+          <span className="recipe-description">{count} x {recipe.title}</span>
+        </div>
+    );
+    }
+
+
       return (
         <div className="page">
           <div>
-          <span className="recipe-description">My shopping list</span><br/><br/>
+          <span className="recipe-description">Buy these ingredients</span><br/><br/>
           {stuff}
 
-          <br/>
-          <br/>
-          <span className="recipe-description">Time to go shopping!</span>
+          <br/><br/><span className="recipe-description">For these meals</span><br/><br/>
+          {genSelected}
           </div>
         </div>
       );
@@ -143,7 +161,7 @@ class CreateListViewComponent extends React.Component {
 
   		selected.push(
   			<div key={key}>
-  				<span className="recipe-description">{recipe.title} x {count}</span>
+  				<span className="recipe-description">{count} x {recipe.title}</span>
   				<a className="icon-button" onClick={this.remove.bind(this, key)}><i className="fa fa-times"></i></a>
   			</div>
 		);
@@ -156,7 +174,7 @@ class CreateListViewComponent extends React.Component {
         <div style={{height: '74%'}}>
       		<div className="page">
       			<div>
-              <span className="recipe-description">Let's find your feed for the week!</span><br/><br/>
+              <span className="recipe-description">Let's find your <span className="feed">feed</span> for the week!</span><br/><br/>
             
       			 {selected}
              {finish}

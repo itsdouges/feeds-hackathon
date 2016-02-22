@@ -16,7 +16,7 @@ class HomeComponent extends React.Component {
           <Link title="Find a recipe" to="/recipe/find"><i className="fa fa-search"></i> Find</Link>
           <Link title="Write a recipe" to="/recipe/create"><i className="fa fa-pencil"></i> Write</Link>
           <Link title="Favourite recipes" to="/recipe/saved"><i className="fa fa-heart"></i> Saved</Link>
-          <Link title="Make a shopping list" to="/create-shopping-list"><i className="fa fa-file-text"></i> Shopping List</Link>
+          <Link title="Make a shopping list" to="/create-shopping-list"><span className="feed">feed</span> List</Link>
         </div>
       </div>
     );

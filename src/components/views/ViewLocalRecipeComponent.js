@@ -44,12 +44,13 @@ class ViewLocalRecipeComponent extends React.Component {
           <div className="recipe-info">
             <div className="text-center">
               <h2>{ recipe.title }</h2>
+              It's a "<i>{recipe.description}</i>"!
             </div>
             <RecipeBadge recipe={recipe} />
             <ul>
               {
                 recipe ? recipe.ingredients.map((ingredient,i) => {
-                  return <li key={i}>{ ingredient.amount + ' ' + ingredient.unit + ' ' + ingredient.name }</li>
+                  return <li key={i}>{ ingredient.amount + ' ' + ingredient.unit + ' of ' + ingredient.name }</li>
                 }) : null
               }
             </ul>
