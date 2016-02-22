@@ -113,9 +113,9 @@ class CreateComponent extends React.Component {
     }
 
   render() {
-    const back = this.canGoBack() && <a className="page-move left" onClick={this.back.bind(this)}><i className="fa fa-chevron-left"></i></a>;
-    const forward = this.canGoForward() && <a className="page-move right" onClick={this.next.bind(this)}><i className="fa fa-chevron-right"></i></a>;
-    const finish = this.canFinish() && <a className="page-move right" style={{marginRight:'1em'}} onClick={this.finish.bind(this)}><i className="fa fa-pencil"></i></a>;
+    const back = this.canGoBack() && <a title="back" className="page-move left" onClick={this.back.bind(this)}><i className="fa fa-chevron-left"></i></a>;
+    const forward = this.canGoForward() && <a title="next" className="page-move right" onClick={this.next.bind(this)}><i className="fa fa-chevron-right"></i></a>;
+    const finish = this.canFinish() && <a title="finish" className="page-move right" style={{marginRight:'1em'}} onClick={this.finish.bind(this)}><i className="fa fa-pencil"></i></a>;
 
     let page;
 

@@ -58,7 +58,7 @@ class PageOne extends React.Component {
     return (
       <div className="page">
         <form>       
-        	<span className="recipe-description">Let's make my </span>
+        	<span className="recipe-description">Let's write down my </span>
 
           <input
           	className="recipe-description textbox"
@@ -69,7 +69,7 @@ class PageOne extends React.Component {
           	type="text" 
           	ref="title" />
 
-          	<span  className="recipe-description">,</span>
+          	<span  className="recipe-description"> <span className="feed">feed</span>,</span>
           	<br/>
           	<br/>
           	

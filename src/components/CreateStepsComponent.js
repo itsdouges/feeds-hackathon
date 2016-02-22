@@ -53,7 +53,7 @@ class CreateStepsComponent extends React.Component {
       <br/>
       <br/>
 			<span className="recipe-description">{this.props.stepNumber}, </span>
-  			<input className="recipe-description textbox big" autoFocus ref="text" type="text" placeholder="put the fry pan on medium heat.." />
+  			<input style={{width: '425px'}} className="recipe-description textbox" autoFocus ref="text" type="text" placeholder="put the fry pan on medium heat.." />
   			<button style={{background: 'none', border: 'none', outline: 'none', fontSize: '1.7em'}} onClick={this.add.bind(this)}><i className="fa fa-plus"></i></button>
   		</form>
 	);

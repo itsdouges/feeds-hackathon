@@ -46,7 +46,7 @@ class ViewRecipeComponent extends React.Component {
         <div className="image-slider" style={{ position:'relative', background: 'url(\'' + recipe.image + '\')', backgroundPosition: 'center center', backgroundSize: 'cover'}}>
            <div style={{position: 'absolute',bottom:'0',right:'0', padding: '1em'}}>
               <span style={{color: 'white',fontSize: '1.2em', margin: '0.5em'}}>{savedRecipe ? '' : 'Like it? Save it!'}</span>'
-              <button className={ 'btn ' + (savedRecipe ?  'btn-danger' : 'btn-success') } onClick={ () => savedRecipe ? this.props.removeOnlineRecipe(recipe) : this.props.addOnlineRecipe(recipe) }>
+              <button title={savedRecipe ? 'Loved' : 'Like it? Save it!'} className={ 'btn ' + (savedRecipe ?  'btn-danger' : 'btn-success') } onClick={ () => savedRecipe ? this.props.removeOnlineRecipe(recipe) : this.props.addOnlineRecipe(recipe) }>
                 <i className="fa fa-heart" />
               </button>
             </div>

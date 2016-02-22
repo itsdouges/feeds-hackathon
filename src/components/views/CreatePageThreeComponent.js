@@ -47,7 +47,7 @@ class PageThree extends React.Component {
     return (
       <div className="page">
       	<div>
-	      	<span className="recipe-description">To make it, you need to..</span>
+	      	<span className="recipe-description">How do you make it though? Spare no detail!</span>
 	    	  <StepList onChange={this.onChange.bind(this)} defaultValue={this.state.steps} />
     	 </div>
       </div>

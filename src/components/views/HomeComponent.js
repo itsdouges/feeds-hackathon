@@ -10,6 +10,7 @@ class HomeComponent extends React.Component {
     return (
       <div className="home">
         <h1 className="title-hero">feed</h1>
+        <div className="sub-title">made for you</div>
 
         <div className="home-actions" style={{textAlign:'center', fontSize: '1.2em'}}>
           <Link title="Find a recipe" to="/recipe/find"><i style={{marginRight:'0.25em'}} className="fa fa-search"></i> find</Link>
