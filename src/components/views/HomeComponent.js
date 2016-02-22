@@ -3,7 +3,6 @@ import { mapStateToProps, mapDispatchToProps } from '../../reducers/mapping';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
 import '../../styles/views/Home.less';
-import Logo from '../../images/cookbook-inverse.png';
 
 class HomeComponent extends React.Component {
   render() {

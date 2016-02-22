@@ -1,0 +1,23 @@
+Describe your hackathon project and how it addresses the theme that you have selected.*
+Feeds is a consumer application catered that behaves as you would, asking you the right questions to streamline your every day chef needs to improve your productivity by giving a user friendly interface and digitizing your recipe books. Feeds will allow the consumer to:
+
+- Never forget a recipe by creating your own recipes
+- Simply finding a recipe that piques your interest online through a series of filters
+- Randomly find the perfect recipe within your favourites for you to cook next
+- Select multiple recipes and automatically generate the most efficient shopping list
+
+A brief introduction to each of your team members and who did what.*2-3 sentences per member is plenty. If you are a solo team member, please simply write "solo member".
+Vincent Lo:
+Vincent Lo is a web / mobile developer and technical consultant based in Sydney, Australia. Vincent landed his first personal client during university and has been extremely passionate and involved with learning everything about web development, particularly in the front end and mobile aspects (originating with the backend). Vincent loves to travel around the world, exploring different cultures, as well as the regular trips to the snows or dives into the sea! Vincent had constructed the user stories, developed the foundation of the application, and worked on setting up the login, stores, actions and API usage.
+
+Michael Dougall:
+I'm a software developer from Sydney, Australia. With 5 years experience I love finding the best solution to all changes I face, all while learning while doing it! I'm most interested in front-end development but I really enjoy working with the entire stack (keeps things interesting, you know?). Other than developing I really enjoy rock fishing, trying to reel in a massive fish over a rock face.. truly exhilarating!
+
+Throughout the hackathon I primarily worked on the write recipe and shopping list features, as well as fleshing out and tweaking the general look and feel of the application, and putting the finishing touches on anything I could poke a stick at....
+
+Overall Who Did What:
+Trello board for development: https://trello.com/b/cyZJkLBp/feeds-hackathon
+
+List the APIs, tools, open source libraries etc. that you used.*
+API's: https://market.mashape.com/spoonacular/recipe-food-nutrition, https://firebase.com
+Tools: NPM, Yeoman, React-Webpack-Generator, Webpack, React-Router, React.js, Redux.js, Redux-thunk, React-Redux, Tcomb-Form, SourceTree, Trello (https://trello.com/b/cyZJkLBp/feeds-hackathon)
