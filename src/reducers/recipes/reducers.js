@@ -84,6 +84,39 @@ export default function recipe(state = initialState, action = {}) {
                 onlineRecipes: {},
                 localRecipes: {}
             };
+        case types.ADDONLINERECIPE:
+            if (action.localStorageItems) {
+                return {
+                    ...state,
+                    onlineRecipes: action.localStorageItems
+                };
+            } else {
+                return {
+                    ...state
+                };
+            }
+        case types.REMOVEONLINERECIPE:
+            if (action.localStorageItems) {
+                return {
+                    ...state,
+                    onlineRecipes: action.localStorageItems
+                };
+            } else {
+                return {
+                    ...state
+                };
+            }
+        case types.ADDLOCALRECIPE:
+            if (action.localStorageItems) {
+                return {
+                    ...state,
+                    localRecipes: action.localStorageItems
+                };
+            } else {
+                return {
+                    ...state
+                };
+            }
         default:
             return state;
     }

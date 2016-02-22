@@ -12,6 +12,7 @@ export function setAuthListeners(callback) {
                 callback();
                 dispatch(loginComplete(null, authData));
             } else {
+                callback();
                 dispatch(loginComplete());
             }
         });

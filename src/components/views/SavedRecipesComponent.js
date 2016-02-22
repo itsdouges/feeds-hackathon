@@ -17,7 +17,7 @@ class SavedRecipesComponent extends React.Component {
     const localRecipes = this.props.state.recipe.localRecipes;
     const onlineRecipes = this.props.state.recipe.onlineRecipes;
 
-    const exists = !!(Object.keys(localRecipes).length && Object.keys(onlineRecipes).length);
+    const exists = !(Object.keys(localRecipes).length && Object.keys(onlineRecipes).length);
 
     const message = !exists && <span>Oh, you have no recipes.  Why not <Link className="btn-link" to="/recipe/find">find</Link> or <Link className="btn-link" to="/recipe/create">create</Link> some :-)</span>;
 
