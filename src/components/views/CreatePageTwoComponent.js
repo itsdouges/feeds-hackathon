@@ -50,8 +50,8 @@ class PageTwo extends React.Component {
       <div className="page" style={{ padding: '5em 0' }}>
       	<div>
       		<span className="recipe-description">I'll need..</span>
-			<IngredientList defaultValue={this.state.ingredients} onChange={this.setIngredients.bind(this)} />
-		</div>
+    			<IngredientList defaultValue={this.state.ingredients} onChange={this.setIngredients.bind(this)} />
+    		</div>
       </div>
     );
   }

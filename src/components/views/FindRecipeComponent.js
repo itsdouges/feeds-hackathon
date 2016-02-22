@@ -87,10 +87,6 @@ class FindRecipeComponent extends React.Component {
     return (
       <div className="findrecipe-component">
         <div className="search">
-          <div className="hero-icon">
-            <i className="fa fa-search" />
-          </div>
-
           <form>
             <Form
                 type={FormSchema}
@@ -103,12 +99,12 @@ class FindRecipeComponent extends React.Component {
                 <button
                   type="submit"
                   disabled
-                  className="btn btn-block btn-default">Searching <i className="fa fa-refresh fa-spin" /></button>
+                  className="btn btn-block btn-default"><i className="fa fa-refresh fa-spin" /></button>
                     :
                 <button
                   type="submit"
                   onClick={this.search.bind(this)}
-                  className="btn btn-block btn-default">Search <i className="fa fa-search" /></button>
+                  className="btn btn-block btn-default"><i className="fa fa-search" /> Find</button>
               }
           </form>
         </div>

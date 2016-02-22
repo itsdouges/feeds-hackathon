@@ -133,11 +133,14 @@ class CreateListViewComponent extends React.Component {
       return (
         <div className="page">
           <div>
-          <span className="recipe-description">Buy these ingredients</span><br/><br/>
-          {stuff}
+            <span className="recipe-description">My <span style={{fontSize:'1.5em'}} className="feed">feed</span> list</span>
 
-          <br/><br/><span className="recipe-description">For these meals</span><br/><br/>
-          {genSelected}
+            <br/><span className="recipe-description"><hr/></span><br/>
+
+            {genSelected}
+
+            <br/><br/><span className="recipe-description"><hr/></span><br/>
+            {stuff}
           </div>
         </div>
       );

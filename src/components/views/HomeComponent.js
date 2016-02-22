@@ -15,8 +15,8 @@ class HomeComponent extends React.Component {
         <div className="home-actions" style={{textAlign:'center', fontSize: '1.2em'}}>
           <Link title="Find a recipe" to="/recipe/find"><i className="fa fa-search"></i> Find</Link>
           <Link title="Write a recipe" to="/recipe/create"><i className="fa fa-pencil"></i> Write</Link>
-          <Link title="Favourite recipes" to="/recipe/saved"><i className="fa fa-heart"></i> Saved</Link>
-          <Link title="Make a shopping list" to="/create-shopping-list"><span className="feed">feed</span> List</Link>
+          <Link title="Saved recipes" to="/recipe/saved"><i className="fa fa-heart"></i> Save</Link>
+          <Link title="Make a feed list" to="/create-shopping-list"><span className="feed">feed</span> List</Link>
         </div>
       </div>
     );
