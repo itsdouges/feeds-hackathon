@@ -43,16 +43,22 @@ class ViewRecipeComponent extends React.Component {
 
     return recipe ?
       <div className="recipe">
-        <div className="image-slider" style={{ background: 'url(\'' + recipe.image + '\')', backgroundPosition: 'center center', backgroundSize: 'cover'}}></div>
+        <div className="image-slider" style={{ position:'relative', background: 'url(\'' + recipe.image + '\')', backgroundPosition: 'center center', backgroundSize: 'cover'}}>
+           <div style={{position: 'absolute',bottom:'0',right:'0', padding: '1em'}}>
+              <span style={{color: 'white',fontSize: '1.2em', margin: '0.5em'}}>{savedRecipe ? '' : 'Like it? Save it!'}</span>'
+              <button className={ 'btn ' + (savedRecipe ?  'btn-danger' : 'btn-success') } onClick={ () => savedRecipe ? this.props.removeOnlineRecipe(recipe) : this.props.addOnlineRecipe(recipe) }>
+                <i className="fa fa-heart" />
+              </button>
+            </div>
+        </div>
 
         <div className="recipe-info">
           <div className="text-center">
-            <button className={ 'btn ' + (savedRecipe ?  'btn-danger' : 'btn-success') } onClick={ () => savedRecipe ? this.props.removeOnlineRecipe(recipe) : this.props.addOnlineRecipe(recipe) }>
-              <i className="fa fa-heart" />
-            </button>
             <h2>{ recipe.title }</h2>
           </div>
+
           <RecipeBadge recipe={recipe} />
+
           <ul>
             {
                 recipe.extendedIngredients.map((ingredient,i) => {
