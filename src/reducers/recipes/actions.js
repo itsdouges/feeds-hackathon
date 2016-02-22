@@ -109,10 +109,10 @@ export function setRecipeListeners() {
         if (authData) {
             const recipeRef = new Firebase(endPoint + '/users/' + authData.uid + '/onlineRecipes/');
             recipeRef.on('child_added', (snapshot) => {
-                dispatch(setOnlineRecipeAddComplete(snapshot));
+                dispatch(setOnlineRecipeAddComplete(snapshot.key(), snapshot.val()));
             });
             recipeRef.on('child_removed', (snapshot) => {
-                dispatch(setOnlineRecipeRemoveComplete(snapshot));
+                dispatch(setOnlineRecipeRemoveComplete(snapshot.key(), snapshot.val()));
             });
 
             const localRecipeRef = new Firebase(endPoint + '/users/' + authData.uid + '/localRecipes/');
@@ -130,6 +130,28 @@ export function setRecipeListeners() {
                     dispatch(reset());
                 }
             });
+        } else {
+            console.log('checking local storage');
+            if (typeof(Storage) !== 'undefined') {
+                //localStorage.removeItem('onlineRecipes');
+                //localStorage.removeItem('localRecipes');
+
+                let onlineRecipes = JSON.parse(localStorage.getItem('onlineRecipes'));
+                if (onlineRecipes) {
+                    console.log(onlineRecipes);
+                    Object.keys(onlineRecipes).forEach((key) => {
+                        dispatch(setOnlineRecipeAddComplete(key, onlineRecipes[key]));
+                    });
+                }
+
+                let localRecipes = JSON.parse(localStorage.getItem('localRecipes'));
+                if (localRecipes) {
+                    console.log(localRecipes);
+                    Object.keys(localRecipes).forEach((key) => {
+                        dispatch(setLocalRecipeAddComplete(key, localRecipes[key]));
+                    });
+                }
+            }
         }
     }
 }
@@ -140,19 +162,19 @@ function reset() {
     };
 }
 
-function setOnlineRecipeAddComplete(snapshot) {
+function setOnlineRecipeAddComplete(key, val) {
     return {
         type: types.ONLINERECIPEADDED,
-        key: snapshot.key(),
-        value: snapshot.val()
+        key: key,
+        value: val
     };
 }
 
-function setOnlineRecipeRemoveComplete(snapshot) {
+function setOnlineRecipeRemoveComplete(key, val) {
     return {
         type: types.ONLINERECIPEREMOVED,
-        key: snapshot.key(),
-        value: snapshot.val()
+        key: key,
+        value: val
     };
 }
 
@@ -180,15 +202,28 @@ export function addOnlineRecipe(recipe) {
             recipeRef.set(recipe);
             dispatch(addOnlineRecipeComplete());
         } else {
-            dispatch(addOnlineRecipeComplete());
+            if (typeof(Storage) !== 'undefined') {
+                let strRec = {};
+                let recipes = localStorage.getItem('onlineRecipes');
+                if (recipes) {
+                    let json = JSON.parse(recipes);
+                    json[recipe.id] = recipe;
+                    strRec = json;
+                } else {
+                    strRec[recipe.id] = recipe;
+                }
+                localStorage.setItem('onlineRecipes', JSON.stringify(strRec));
+                dispatch(addOnlineRecipeComplete(strRec));
+            }
         }
     }
 }
 
-function addOnlineRecipeComplete() {
+function addOnlineRecipeComplete(localStorageItems) {
     console.log('added');
     return {
-        type: types.ADDONLINERECIPE
+        type: types.ADDONLINERECIPE,
+        localStorageItems: localStorageItems
     };
 }
 
@@ -200,15 +235,26 @@ export function removeOnlineRecipe(recipe) {
             recipeRef.remove();
             dispatch(removeOnlineRecipeComplete());
         } else {
-            dispatch(removeOnlineRecipeComplete());
+            if (typeof(Storage) !== 'undefined') {
+                let strRec = {};
+                let recipes = localStorage.getItem('onlineRecipes');
+                if (recipes) {
+                    let json = JSON.parse(recipes);
+                    delete json[recipe.id];
+                    strRec = json;
+                }
+                localStorage.setItem('onlineRecipes', JSON.stringify(strRec));
+                dispatch(removeOnlineRecipeComplete(strRec));
+            }
         }
     }
 }
 
-function removeOnlineRecipeComplete() {
+function removeOnlineRecipeComplete(localStorageItems) {
     console.log('removed');
     return {
-        type: types.REMOVEONLINERECIPE
+        type: types.REMOVEONLINERECIPE,
+        localStorageItems: localStorageItems
     };
 }
 
@@ -220,13 +266,26 @@ export function addLocalRecipe(recipe) {
             recipeRef.push(recipe);
             dispatch(addLocalRecipeComplete());
         } else {
-            dispatch(addLocalRecipeComplete());
+            if (typeof(Storage) !== 'undefined') {
+                let strRec = {};
+                let recipes = localStorage.getItem('localRecipes');
+                if (recipes) {
+                    let json = JSON.parse(recipes);
+                    json[recipe.id] = recipe;
+                    strRec = json;
+                } else {
+                    strRec[recipe.id] = recipe;
+                }
+                localStorage.setItem('localRecipes', JSON.stringify(strRec));
+                dispatch(addLocalRecipeComplete(strRec));
+            }
         }
     }
 }
 
-function addLocalRecipeComplete() {
+function addLocalRecipeComplete(localStorageItems) {
     return {
-        type: types.ADDLOCALRECIPE
+        type: types.ADDLOCALRECIPE,
+        localStorageItems: localStorageItems
     };
 }
