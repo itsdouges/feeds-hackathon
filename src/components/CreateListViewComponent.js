@@ -152,18 +152,18 @@ class CreateListViewComponent extends React.Component {
   	const finish = Object.keys(this.state.selected).length > 0 && <div style={{textAlign: 'right', marginTop:'1em'}}><a className="feed-me" style={{marginRight:'1em'}} onClick={this.finish.bind(this)}>feed me</a></div>;
 
     return (
-      <div style={{height: '90%'}}>
-        <div style={{height: '70%'}}>
+      <div style={{height: '100%'}}>
+        <div style={{height: '74%'}}>
       		<div className="page">
       			<div>
-              <span className="recipe-description">Let's figure our your feed for the week!</span><br/><br/>
+              <span className="recipe-description">Let's find your feed for the week!</span><br/><br/>
             
       			 {selected}
              {finish}
             </div>
     		  </div>
           </div>
-       <div className="no-shrink" style={{background: '#388E3C', display: 'flex', overflow: 'auto', alignItems: 'flex-start', height: '25%', width: '100%' }}>
+       <div className="no-shrink" style={{background: '#388E3C', display: 'flex', overflow: 'auto', alignItems: 'flex-start', height: '22%', width: '100%' }}>
           {recipes}
         </div>
       </div>
