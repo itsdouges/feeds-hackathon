@@ -94,7 +94,7 @@ class CreateListViewComponent extends React.Component {
 
         recipes.push(
           <div className={this.isSelected.call(this,recipe.id) ? 'selected' : ''} key={key} onClick={(e) => { e.preventDefault(); this.add.call(this, recipe.id); }} style={{cursor:'pointer'}}>
-            <RecipeCard hideImage={true} noLink={true} recipe={recipe} />
+            <RecipeCard hideImage={true} isLocal={!recipe.image} noLink={true} recipe={recipe} />
           </div>
         );
       }
@@ -119,13 +119,13 @@ class CreateListViewComponent extends React.Component {
 
           <br/>
           <br/>
-          <span className="recipe-description">Now time to print it off and go shopping!</span>
+          <span className="recipe-description">Time to go shopping!</span>
           </div>
         </div>
       );
     }
 
-    const message = <span>Need more recipes? Why not <Link className="btn-link" to="/recipe/find">find</Link> or <Link className="btn-link" to="/recipe/create">create</Link> some :-)</span>;
+    const message = <span className="recipe-description">Need more recipes? Why not <Link className="btn-link" to="/recipe/find">find</Link> or <Link className="btn-link" to="/recipe/create">create</Link> some :-)</span>;
 
   	if (!recipes) {
   		return (<div className="page">{message}</div>);
@@ -149,20 +149,23 @@ class CreateListViewComponent extends React.Component {
 		);
   	}
 
-  	const finish = Object.keys(this.state.selected).length > 0 && <a className="page-move right finish" style={{marginRight:'1em'}} onClick={this.finish.bind(this)}><i className="fa fa-check"></i></a>;
+  	const finish = Object.keys(this.state.selected).length > 0 && <div style={{textAlign: 'right', marginTop:'1em'}}><a className="feed-me" style={{marginRight:'1em'}} onClick={this.finish.bind(this)}>feed me</a></div>;
 
     return (
-      <div className="page">
-    		<div style={{background: 'blue', display: 'flex', overflow: 'auto', alignItems: 'center', position: 'fixed', bottom: '0', left: '0', right: '0' }}>
+      <div style={{height: '90%'}}>
+        <div style={{height: '70%'}}>
+      		<div className="page">
+      			<div>
+              <span className="recipe-description">Let's figure our your feed for the week!</span><br/><br/>
+            
+      			 {selected}
+             {finish}
+            </div>
+    		  </div>
+          </div>
+       <div className="no-shrink" style={{background: '#388E3C', display: 'flex', overflow: 'auto', alignItems: 'flex-start', height: '25%', width: '100%' }}>
           {recipes}
-    		</div>
-
-    		<div style={{margin: '5em 0', paddingBottom: '10em', height: '100%', overflow: 'auto'}}>
-    			<div><span className="recipe-description">Now what shall I pick..</span><br/><br/></div>
-  			 {selected}
-  		  </div>
-
-  		  {finish}
+        </div>
       </div>
     );
   }

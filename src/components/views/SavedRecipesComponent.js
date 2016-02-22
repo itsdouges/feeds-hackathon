@@ -19,7 +19,7 @@ class SavedRecipesComponent extends React.Component {
 
     const exists = !!(Object.keys(localRecipes).length && Object.keys(onlineRecipes).length);
 
-    const message = !exists && <span>Oh, you have no recipes.  Why not <Link className="btn-link" to="/recipe/find">find</Link> or <Link className="btn-link" to="/recipe/create">create</Link> some :-)</span>;
+    const message = !exists && <span className="recipe-description">Oh, you have no recipes.  Why not <Link className="btn-link" to="/recipe/find">find</Link> or <Link className="btn-link" to="/recipe/create">create</Link> some :-)</span>;
 
     return (
       <div className="savedrecipes-component page">

@@ -67,8 +67,8 @@ class CreateIngredientComponent extends React.Component {
   render() {
   	const form = (
 		<form>
-  			<input autofocus className="recipe-description textbox small" ref="amount" type="text" placeholder="250" /> 
-  			<input className="recipe-description textbox small" ref="unit" type="text" placeholder="grams" /> 
+  			<input autofocus className="recipe-description textbox small" ref="amount" type="number" placeholder="250" /> 
+  			<input style={{width: '150px'}} className="recipe-description textbox" ref="unit" type="text" placeholder="grams" /> 
   			<span className="recipe-description"> of </span>
   			<input className="recipe-description textbox" autoFocus ref="name" type="text" placeholder="Rib Eye Steak" />
   			<button style={{background: 'none', border: 'none', outline: 'none', fontSize: '1.7em'}} onClick={this.add.bind(this)}><i className="fa fa-plus"></i></button>
